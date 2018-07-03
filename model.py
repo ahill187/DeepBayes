@@ -13,10 +13,6 @@ from Matrix import *
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-
-
-
 working_directory = "/Users/Work/plots/"
 def BinClass(x_train, bins, xbins):
 
