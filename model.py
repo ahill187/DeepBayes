@@ -99,7 +99,7 @@ def PlotHistogram(bins, xbins, ybins, weights_x, weights_y, weights_predict, k, 
     plt.show()
 
 
-def Model(multi, x_train, y_train, bins):
+def Model(multi, x_train, y_train, bins, weights):
     model = Sequential()
     model.add(Dense(bins, activation='relu', input_shape=(1,)))
     model.add(Dropout(0.5))
@@ -110,13 +110,13 @@ def Model(multi, x_train, y_train, bins):
     sgd = SGD(lr=multi.lr, decay=1e-6, momentum=0.9, nesterov=True)
     model.compile(loss=multi.loss, optimizer=sgd, metrics=multi.metrics)
 
-    model.fit(x_train, y_train, epochs=multi.epochs, batch_size=multi.batch)
+    model.fit(x_train, y_train, epochs=multi.epochs, batch_size=multi.batch, sample_weights=weights)
 
     return model
 
 def BayesIteration(multi, x_train, y_train, bins, x_test, y_test):
 
-    model = Model(multi, x_train, y_train, bins, [], 0)
+    model = Model(multi, x_train, y_train, bins, [])
     k = 0
     score = []
     ndata=len(x_train)
@@ -137,7 +137,7 @@ def BayesIteration(multi, x_train, y_train, bins, x_test, y_test):
         if score[k][0] < 0.002 and score[k][1]>0.8 or k==5:
             break
         else:
-            model = Model(multi, x_train, y_train, bins, weights, 1)
+            model = Model(multi, x_train, y_train, bins, weights)
             k = k+1
 
     return score
