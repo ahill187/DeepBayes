@@ -4,7 +4,7 @@
 # Date modified: 180606
 # Description: Testing keras
 #------------------------------
-
+from __future__ import division
 from keras.models import Sequential, Model
 from keras.layers import Dense, Dropout, Activation, Conv2D, MaxPooling2D, Flatten, Input, LSTM, Embedding
 from keras.optimizers import SGD
@@ -108,9 +108,3 @@ def BayesIteration(multi, train, test, bins):
 
 multi = MultiClassifier()
 model = BayesIteration(multi, train, test, bins)
-
-
-
-
-
-

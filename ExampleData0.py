@@ -6,13 +6,13 @@
 # Description:
 # Creating small data samples for testing the package.
 #------------------------------
-
+from __future__ import division
 import keras
 import os
 from Matrix import *
 import numpy as np
 import matplotlib.pyplot as plt
-from __future__ import division
+
 
 from matplotlib.backends.backend_pdf import PdfPages
 
