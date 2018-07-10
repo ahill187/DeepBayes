@@ -12,11 +12,11 @@ import os
 from Matrix import *
 import numpy as np
 import matplotlib.pyplot as plt
+from __future__ import division
 
 from matplotlib.backends.backend_pdf import PdfPages
 
 def BinClass(x_train, bins, xbins):
-
     y_train = []
     for x in x_train:
         xvec = [x for i in range(bins)]
@@ -28,7 +28,6 @@ def BinClass(x_train, bins, xbins):
             yclass = max(yclass)
         y_train.append(yclass)
     y_train = keras.utils.to_categorical(y_train, bins)
-
     return y_train
 
 def Bins(bins, min, max):
@@ -50,7 +49,7 @@ class Data:
 
 def CreateExampleData(ndata=1000, ngauss=1000, bins=50, sd_smear=0.1, title="NA", sd=0.5):
 
-    plot_directory = os.getcwd() + "/Plots_gen/"
+    plot_directory = os.getcwd() + "/Plots_0/"
     if not os.path.exists(plot_directory):
         os.makedirs(plot_directory)
 
@@ -79,9 +78,3 @@ def CreateExampleData(ndata=1000, ngauss=1000, bins=50, sd_smear=0.1, title="NA"
 
     data = Data(ngauss, x, y, xbins, ybins, weights_x, weights_y)
     return data
-
-
-
-
-
-
