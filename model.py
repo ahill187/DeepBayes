@@ -41,14 +41,13 @@ class MultiClassifier:
         self.loss = 'categorical_crossentropy'
 
 def PlotHistogram(bins, xbins, ybins, weights_x, weights_y, weights_predict, k, wd, a, t):
-    plt.hist(xbins, bins, weights=weights_x, label=t[0], alpha=0.3, edgecolor='grey')
-    plt.hist(ybins, bins, weights=weights_y, label=t[1], alpha=0.3, edgecolor='grey')
-    plt.hist(ybins, bins, weights=weights_predict, label=t[2], alpha=0.3, edgecolor='grey')
+    plt.hist(xbins, bins, weights=weights_x, label=t[0], alpha=0.5, edgecolor='grey', color='cyan')
+    plt.hist(ybins, bins, weights=weights_y, label=t[1], alpha=0.5, edgecolor='grey', color='grey')
+    plt.hist(ybins, bins, weights=weights_predict, label=t[2], alpha=0.5, edgecolor='grey', color='yellow')
     plt.legend(loc='upper right')
     title = a + "_Iteration_" + str(k) + ".png"
     plt.savefig(wd + title)
     plt.close()
-
 
 def Model(multi, x_train, y_train, bins):
 
