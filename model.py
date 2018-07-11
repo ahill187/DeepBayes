@@ -11,6 +11,8 @@ from keras.optimizers import SGD
 from keras.callbacks import EarlyStopping
 from Matrix import *
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import os
 from ExampleData0 import *

@@ -11,7 +11,10 @@ import keras
 import os
 from Matrix import *
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
 
 
 from matplotlib.backends.backend_pdf import PdfPages
