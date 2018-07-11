@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="d1fac300-6aaf-48c5-8a63-fdc87ca88a63" name="Default" comment="" />
+=======
+    <list default="true" id="d1fac300-6aaf-48c5-8a63-fdc87ca88a63" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/ExampleData.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ExampleData0.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/generator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
+    </list>
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,6 +21,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="model.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -30,6 +41,15 @@
               <caret line="80" selection-start-line="80" selection-end-line="81" selection-end-column="63" />
               <folding>
                 <element signature="e#165#196#0" expanded="true" />
+=======
+      <file leaf-file-name="model.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/model.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="780">
+              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+              <folding>
+                <element signature="e#166#178#0" expanded="true" />
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
               </folding>
             </state>
           </provider>
@@ -47,10 +67,17 @@
       <file leaf-file-name="generator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="1500">
               <caret line="108" column="19" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
               <folding>
                 <element signature="e#167#209#0" expanded="true" />
+=======
+            <state relative-caret-position="210">
+              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+              <folding>
+                <element signature="e#1#13#0" expanded="true" />
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
               </folding>
             </state>
           </provider>
@@ -59,8 +86,16 @@
       <file leaf-file-name="ExampleData0.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ExampleData0.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="498">
               <caret line="52" column="106" selection-start-line="52" selection-start-column="106" selection-end-line="52" selection-end-column="106" />
+=======
+            <state relative-caret-position="35">
+              <caret line="50" column="68" selection-start-line="50" selection-start-column="68" selection-end-line="50" selection-end-column="68" />
+              <folding>
+                <element signature="e#282#294#0" expanded="true" />
+              </folding>
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
             </state>
           </provider>
         </entry>
@@ -68,7 +103,11 @@
       <file leaf-file-name="model2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model2.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="165">
+=======
+            <state relative-caret-position="15">
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
               <caret line="19" selection-start-line="19" selection-end-line="27" selection-end-column="19" />
             </state>
           </provider>
@@ -97,11 +136,18 @@
         <option value="$PROJECT_DIR$/../tensorflow_180606_2/BinnedRegression.py" />
         <option value="$PROJECT_DIR$/model2.py" />
         <option value="$PROJECT_DIR$/ExampleData.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/extra.py" />
         <option value="$PROJECT_DIR$/generator.py" />
         <option value="$PROJECT_DIR$/model.py" />
         <option value="$PROJECT_DIR$/ExampleData0.py" />
         <option value="$PROJECT_DIR$/model3.py" />
+=======
+        <option value="$PROJECT_DIR$/generator.py" />
+        <option value="$PROJECT_DIR$/ExampleData0.py" />
+        <option value="$PROJECT_DIR$/extra.py" />
+        <option value="$PROJECT_DIR$/model.py" />
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
       </list>
     </option>
   </component>
@@ -116,8 +162,13 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
     <option name="y" value="23" />
+<<<<<<< HEAD
     <option name="width" value="1920" />
     <option name="height" value="1077" />
+=======
+    <option name="width" value="1858" />
+    <option name="height" value="1075" />
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -161,7 +212,11 @@
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+<<<<<<< HEAD
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+=======
+    <property name="settings.editor.selected.configurable" value="PyScientificConfigurable" />
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myIpythonEnabled" value="false" />
@@ -218,6 +273,7 @@
       <option name="project" value="LOCAL" />
       <updated>1530623714707</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00002" summary="Adding loss function reweighting">
       <created>1531216040567</created>
       <option name="number" value="00002" />
@@ -290,6 +346,37 @@
       <window_info anchor="bottom" id="Find" order="1" weight="0.32955715" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" visible="true" weight="0.33998007" />
+=======
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1858" height="1075" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="7" visible="true" weight="0.34065935" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="right" id="Remote Host" order="3" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1759957" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" x="766" y="230" width="1018" height="727" id="SciView" order="3" visible="true" weight="0.20828848" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32955715" />
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,10 +387,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding loss function reweighting" />
+<<<<<<< HEAD
     <MESSAGE value="Retraining with y data" />
     <MESSAGE value="New plotting folder" />
     <MESSAGE value="changing posterior to one hot vector" />
     <option name="LAST_COMMIT_MESSAGE" value="changing posterior to one hot vector" />
+=======
+    <option name="LAST_COMMIT_MESSAGE" value="Adding loss function reweighting" />
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -311,6 +402,7 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/model2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -468,10 +560,18 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
     <entry file="file://$PROJECT_DIR$/model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2385">
           <caret line="159" lean-forward="true" selection-start-line="159" selection-end-line="159" />
+<<<<<<< HEAD
+=======
+          <folding>
+            <element signature="e#166#178#0" expanded="true" />
+          </folding>
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
         </state>
       </provider>
     </entry>
@@ -496,6 +596,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+<<<<<<< HEAD
+=======
+          <folding>
+            <element signature="e#166#178#0" expanded="true" />
+          </folding>
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
         </state>
       </provider>
     </entry>
@@ -520,6 +626,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2115">
           <caret line="141" selection-start-line="141" selection-end-line="141" />
+<<<<<<< HEAD
+=======
+          <folding>
+            <element signature="e#166#178#0" expanded="true" />
+          </folding>
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
         </state>
       </provider>
     </entry>
@@ -545,7 +657,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model2.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="165">
+=======
+        <state relative-caret-position="15">
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
           <caret line="19" selection-start-line="19" selection-end-line="27" selection-end-column="19" />
         </state>
       </provider>
@@ -568,6 +684,7 @@
     <entry file="file://$PROJECT_DIR$/Plots_0/Testing_Iteration_1.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/extra.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -581,20 +698,38 @@
           <caret line="108" column="19" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
           <folding>
             <element signature="e#167#209#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <folding>
+            <element signature="e#1#13#0" expanded="true" />
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1215">
           <caret line="81" column="42" selection-start-line="81" selection-start-column="42" selection-end-line="81" selection-end-column="42" />
           <folding>
             <element signature="e#165#196#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/ExampleData0.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="35">
+          <caret line="50" column="68" selection-start-line="50" selection-start-column="68" selection-end-line="50" selection-end-column="68" />
+          <folding>
+            <element signature="e#282#294#0" expanded="true" />
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ExampleData0.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="498">
@@ -608,6 +743,21 @@
           <caret line="80" selection-start-line="80" selection-end-line="81" selection-end-column="63" />
           <folding>
             <element signature="e#165#196#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/extra.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+          <folding>
+            <element signature="e#166#178#0" expanded="true" />
+>>>>>>> 28db5daaef52d69c44b2aab967df9acd1d5d8db4
           </folding>
         </state>
       </provider>
