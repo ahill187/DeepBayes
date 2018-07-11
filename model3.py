@@ -78,6 +78,8 @@ def BayesIteration(multi, train, test, bins):
         PlotHistogram(bins, train.xbins, train.ybins, train.x_weights, train.y_weights, weights_predict_train, k, plot_directory, "Training", t)
         plt.close('all')
         prediction = model.predict(test.x)
+        posterior = model.predict_classes(test.x)
+        posterior = keras.utils.to_categorical(posterior, bins)
         weights_predict = np.asarray([sum(Column(prediction, i)) for i in range(bins)])
         y_weights = []
         for y in train.y_weights:
@@ -100,7 +102,7 @@ def BayesIteration(multi, train, test, bins):
         if k==150:
             break
         else:
-            model.fit(test.x, prediction, epochs=multi.epochs, batch_size=multi.batch)
+            model.fit(test.x, posterior, epochs=multi.epochs, batch_size=multi.batch)
             k = k+1
 
     return model
