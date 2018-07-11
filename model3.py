@@ -11,13 +11,11 @@ from keras.optimizers import SGD
 from keras.callbacks import EarlyStopping
 from Matrix import *
 import numpy as np
-import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import os
 from ExampleData0 import *
 
-plot_directory = os.getcwd() + "/Plots_2/"
+plot_directory = os.getcwd() + "/Plots_3/"
 
 if not os.path.exists(plot_directory):
     os.makedirs(plot_directory)
@@ -25,18 +23,18 @@ if not os.path.exists(plot_directory):
 # Training Data -----------------------------------------------------------
 bins = 70
 sd = round(float(np.random.uniform(0, 1)), 8)
-train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, sd=sd, sd_smear=0.1)
+train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, sd=sd, sd_smear=0.3, plots="/Plots_3/")
 plt.close('all')
 
 # Testing Data -----------------------------------------------------------------------------------
 
-test = CreateExampleData(title="ExampleTestingData.pdf", bins=bins, sd=0.3, sd_smear=0.1)
+test = CreateExampleData(title="ExampleTestingData.pdf", bins=bins, sd=0.3, sd_smear=0.3, plots="/Plots_3/")
 plt.close('all')
 # Keras Model -------------------------------------------------------------------------------------
 
 class MultiClassifier:
     def __init__(self):
-        self.epochs = 10000
+        self.epochs = 5000
         self.lr = 0.001
         self.batch = 1000
         self.metrics = ['acc', 'mse', 'mae']
@@ -102,7 +100,7 @@ def BayesIteration(multi, train, test, bins):
         if k==150:
             break
         else:
-            model.fit(train.x, train.y, epochs=multi.epochs, batch_size=multi.batch, class_weight=weights)
+            model.fit(test.x, prediction, epochs=multi.epochs, batch_size=multi.batch)
             k = k+1
 
     return model
