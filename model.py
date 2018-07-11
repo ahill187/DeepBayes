@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import os
 from ExampleData0 import *
 
-plot_directory = os.getcwd() + "/Plots_0/"
+plot_directory = os.getcwd() + "/Plots_2/"
 
 if not os.path.exists(plot_directory):
     os.makedirs(plot_directory)
@@ -23,12 +23,12 @@ if not os.path.exists(plot_directory):
 # Training Data -----------------------------------------------------------
 bins = 70
 sd = round(float(np.random.uniform(0, 1)), 8)
-train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, sd=sd, sd_smear=0.3)
+train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, sd=sd, sd_smear=0.1)
 plt.close('all')
 
 # Testing Data -----------------------------------------------------------------------------------
 
-test = CreateExampleData(title="ExampleTestingData.pdf", bins=bins, sd=0.3, sd_smear=0.3)
+test = CreateExampleData(title="ExampleTestingData.pdf", bins=bins, sd=0.3, sd_smear=0.1)
 plt.close('all')
 # Keras Model -------------------------------------------------------------------------------------
 
