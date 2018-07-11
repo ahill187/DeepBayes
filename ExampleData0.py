@@ -11,7 +11,10 @@ import keras
 import os
 from Matrix import *
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
 
 
 from matplotlib.backends.backend_pdf import PdfPages
@@ -49,7 +52,7 @@ class Data:
 
 def CreateExampleData(ndata=1000, ngauss=1000, bins=50, sd_smear=0.1, title="NA", sd=0.5, plots="/Plots_0/"):
 
-    plot_directory = os.getcwd() + "/Plots_0/"
+    plot_directory = os.getcwd() + "/Plots_2/"
     if not os.path.exists(plot_directory):
         os.makedirs(plot_directory)
 
