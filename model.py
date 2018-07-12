@@ -102,7 +102,7 @@ def BayesIteration(multi, train, test, bins):
         if k==150:
             break
         else:
-            model.fit(train.x, train.y, epochs=1000, batch_size=multi.batch, sample_weight=sample_weights)
+            model.fit(train.x, train.y, epochs=3000, batch_size=multi.batch, sample_weight=sample_weights)
             k = k+1
 
     return model
