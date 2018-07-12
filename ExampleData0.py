@@ -81,3 +81,11 @@ def CreateExampleData(ndata=1000, ngauss=1000, bins=50, sd_smear=0.1, title="NA"
 
     data = Data(ngauss, x, y, xbins, ybins, weights_x, weights_y)
     return data
+
+def SampleWeights(class_weights, train):
+    sample_weights = []
+    for i in range(len(train.x)):
+        zclass = [index for index, item in enumerate(train.y[i]) if item==1]
+        sample_weights.append(class_weights[zclass[0]])
+    sample_weights = np.asarray(sample_weights)
+    return(sample_weights)
