@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 import os
 from ExampleData0 import *
 
-plot_directory = os.getcwd() + "/Plots_2/"
+plot_directory = os.getcwd() + "/Plots_SampleWeights_0.1/"
 
 if not os.path.exists(plot_directory):
     os.makedirs(plot_directory)
@@ -52,13 +52,11 @@ def PlotHistogram(bins, xbins, ybins, weights_x, weights_y, weights_predict, k, 
     plt.close()
 
 def Model(multi, x_train, y_train, bins):
-
     model = Sequential()
     model.add(Dense(20, activation='relu', input_shape=(1,)))
     model.add(Dropout(0.5))
     model.add(Dense(20, activation='relu'))
     model.add(Dropout(0.5))
-
     model.add(Dense(bins, activation='softmax'))
     sgd = SGD(lr=multi.lr, decay=1e-6, momentum=0.9, nesterov=True)
     stop = EarlyStopping(patience=5)
@@ -87,7 +85,7 @@ def BayesIteration(multi, train, test, bins):
                 y_weights.append(0.0000000001)
             else:
                 y_weights.append(y)
-        weights = np.asarray([weights_predict[i]/y_weights[i] for i in range(bins)])
+        class_weights = np.asarray([weights_predict[i]/y_weights[i] for i in range(bins)])
 
         score.append(model.evaluate(test.x, test.y, batch_size=128))
 
@@ -98,11 +96,12 @@ def BayesIteration(multi, train, test, bins):
         t = ["MC True Distribution", "Measured True Distribution", "Predicted from Keras"]
         PlotHistogram(bins, test.ybins, test.ybins, train.y_weights, test.y_weights, weights_predict, k, plot_directory, "Combined", t)
         plt.close('all')
+        sample_weights = SampleWeights(class_weights, train)
 
         if k==150:
             break
         else:
-            model.fit(train.x, train.y, epochs=multi.epochs, batch_size=multi.batch, class_weight=weights)
+            model.fit(train.x, train.y, epochs=1000, batch_size=multi.batch, sample_weight=sample_weights)
             k = k+1
 
     return model
