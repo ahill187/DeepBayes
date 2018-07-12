@@ -17,7 +17,8 @@ import matplotlib.pyplot as plt
 import os
 from ExampleData0 import *
 
-plot_directory = os.getcwd() + "/Plots_SampleWeights_0.1/"
+parent = os.path.normpath(os.path.join(os.getcwd(), os.pardir))
+plot_directory = parent + "/Plots_SampleWeights_0.1/"
 
 if not os.path.exists(plot_directory):
     os.makedirs(plot_directory)
