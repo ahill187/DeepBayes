@@ -25,7 +25,8 @@ if not os.path.exists(plot_directory):
 
 # Training Data -----------------------------------------------------------
 bins = 70
-sd = round(float(np.random.uniform(0, 1)), 8)
+#sd = round(float(np.random.uniform(0, 1)), 8)
+sd = 0.6
 train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, sd=sd, sd_smear=0.1)
 plt.close('all')
 
