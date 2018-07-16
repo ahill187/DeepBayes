@@ -21,10 +21,12 @@ from ExampleData0 import *
 version = sys.version_info.major
 if version==2:
     folder = raw_input("Plotting Directory: ")
-    epochs = raw_input("Epochs: ")
+    epochs = int(raw_input("Epochs Training: "))
+    epochs2 = int(raw_input("Epochs Iteration: "))
 else:
     folder = input("Plotting Directory: ")
-    epochs = input("Epochs: ")
+    epochs = int(input("Epochs: "))
+    epochs2 = int(input("Epochs Iteration: "))
 
 parent = os.path.normpath(os.path.join(os.getcwd(), os.pardir))
 plot_directory = parent + "/" + folder + "/"
@@ -122,10 +124,11 @@ def BayesIteration(multi, train, test, bins):
         if k==150:
             break
         else:
-            model.fit(train.x, train.y, epochs=epochs, batch_size=multi.batch, sample_weight=sample_weights)
+            model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, sample_weight=sample_weights)
             k = k+1
 
     return model
 
 multi = MultiClassifier()
+multi.epochs = epochs
 model = BayesIteration(multi, train, test, bins)
