@@ -55,3 +55,15 @@ def VecDivide(vector1, vector2):
     for i in range(len(vector1)):
         vector.append(vector1[i]/vector2[i])
     return vector
+def VecMult(vector1, vector2):
+    vector = []
+    for i in range(len(vector1)):
+        vector.append(vector1[i]*vector2[i])
+    return vector
+
+def MatScalar(matrix, scalar):
+    mat = []
+    for i in range(len(matrix)):
+        mat.append(VecScalar(matrix[i], scalar))
+
+    return mat
