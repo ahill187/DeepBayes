@@ -23,10 +23,14 @@ if version==2:
     folder = raw_input("Plotting Directory: ")
     epochs = int(raw_input("Epochs Training: "))
     epochs2 = int(raw_input("Epochs Iteration: "))
+    sd = int(raw_input("sd Training: "))
+    sd2 = int(raw_input("sd Testing: "))
 else:
     folder = input("Plotting Directory: ")
     epochs = int(input("Epochs: "))
     epochs2 = int(input("Epochs Iteration: "))
+    sd = int(input("sd Training: "))
+    sd2 = int(input("sd Testing: "))
 
 parent = os.path.normpath(os.path.join(os.getcwd(), os.pardir))
 plot_directory = parent + "/" + folder + "/"
@@ -39,14 +43,12 @@ if not os.path.exists(plot_directory):
 
 # Training Data -----------------------------------------------------------
 bins = 70
-#sd = round(float(np.random.uniform(0, 1)), 8)
-sd = 0.6
 train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, sd=sd, sd_smear=0.1, plot_directory=plot_directory)
 plt.close('all')
 
 # Testing Data -----------------------------------------------------------------------------------
 
-test = CreateExampleData(title="ExampleTestingData.pdf", bins=bins, sd=0.3, sd_smear=0.1, plot_directory=plot_directory)
+test = CreateExampleData(title="ExampleTestingData.pdf", bins=bins, sd=sd2, sd_smear=0.1, plot_directory=plot_directory)
 plt.close('all')
 # Keras Model -------------------------------------------------------------------------------------
 
