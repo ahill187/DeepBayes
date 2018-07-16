@@ -18,7 +18,7 @@ import os
 from ExampleData0 import *
 
 parent = os.path.normpath(os.path.join(os.getcwd(), os.pardir))
-plot_directory = parent + "/Plots_SampleWeights_0.1/"
+plot_directory = parent + "/Plots_eff/"
 
 if not os.path.exists(plot_directory):
     os.makedirs(plot_directory)
@@ -27,12 +27,12 @@ if not os.path.exists(plot_directory):
 bins = 70
 #sd = round(float(np.random.uniform(0, 1)), 8)
 sd = 0.6
-train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, sd=sd, sd_smear=0.1)
+train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, sd=sd, sd_smear=0.1, plot_directory=plot_directory)
 plt.close('all')
 
 # Testing Data -----------------------------------------------------------------------------------
 
-test = CreateExampleData(title="ExampleTestingData.pdf", bins=bins, sd=0.3, sd_smear=0.1)
+test = CreateExampleData(title="ExampleTestingData.pdf", bins=bins, sd=0.3, sd_smear=0.1, plot_directory=plot_directory)
 plt.close('all')
 # Keras Model -------------------------------------------------------------------------------------
 
@@ -44,10 +44,13 @@ class MultiClassifier:
         self.metrics = ['acc', 'mse', 'mae']
         self.loss = 'categorical_crossentropy'
 
-def PlotHistogram(bins, xbins, ybins, weights_x, weights_y, weights_predict, k, wd, a, t):
+def PlotHistogram(bins, xbins, ybins, weights_x, weights_y, k, wd, a, t, weights_predict=[],num=3):
     plt.hist(xbins, bins, weights=weights_x, label=t[0], alpha=0.5, edgecolor='grey', color='cyan')
     plt.hist(ybins, bins, weights=weights_y, label=t[1], alpha=0.5, edgecolor='grey', color='grey')
-    plt.hist(ybins, bins, weights=weights_predict, label=t[2], alpha=0.5, edgecolor='grey', color='yellow')
+    if num==3:
+        plt.hist(ybins, bins, weights=weights_predict, label=t[2], alpha=0.5, edgecolor='grey', color='yellow')
+    else:
+        pass
     plt.legend(loc='upper right', fontsize='x-small')
     title = a + "_Iteration_" + str(k) + ".png"
     plt.savefig(wd + title)
@@ -74,13 +77,15 @@ def BayesIteration(multi, train, test, bins):
 
     while True:
 
+        # Testing algorithm on training data for verification
         prediction = model.predict(train.x)
         weights_predict_train = [sum(Column(prediction, i)) for i in range(bins)]
         t = ["MC Smeared", "MC True Distribution", "Predicted from Keras"]
-        PlotHistogram(bins, train.xbins, train.ybins, train.x_weights, train.y_weights, weights_predict_train, k, plot_directory, "Training", t)
+        PlotHistogram(bins, train.xbins, train.ybins, train.x_weights, train.y_weights, k, plot_directory, "Training", t, weights_predict_train)
         plt.close('all')
         prediction = model.predict(test.x)
         weights_predict = np.asarray([sum(Column(prediction, i)) for i in range(bins)])
+        weights_predict = VecScalar(weights_predict, 1/sum(weights_predict))
         y_weights = []
         for y in train.y_weights:
             if y==0:
@@ -93,11 +98,12 @@ def BayesIteration(multi, train, test, bins):
 
         print("Loss = {0}, Accuracy = {1}" .format(score[k][0], score[k][1]))
         t = ["Measured Smeared", "Measured True Distribution", "Predicted from Keras"]
-        PlotHistogram(bins, test.xbins, test.ybins, test.x_weights, test.y_weights, weights_predict, k, plot_directory, "Testing",t)
+        PlotHistogram(bins, test.xbins, test.ybins, test.x_weights, test.y_weights, k, plot_directory, "Testing",t, weights_predict)
         plt.close('all')
         t = ["MC True Distribution", "Measured True Distribution", "Predicted from Keras"]
         PlotHistogram(bins, test.ybins, test.ybins, train.y_weights, test.y_weights, weights_predict, k, plot_directory, "Combined", t)
         plt.close('all')
+
         sample_weights = SampleWeights(class_weights, train)
 
         if k==150:
