@@ -53,7 +53,7 @@ class Data:
 
 # Training Data -----------------------------------------------------------
 
-def CreateExampleData(ndata=1000, ngauss=1000, bins=50, sd_smear=0.1, title="NA", sd=0.5, plot_directory="Plots"):
+def CreateExampleData(ndata=1000, ngauss=1000, bins=50, binsx=50, sd_smear=0.1, title="NA", sd=0.5, plot_directory="Plots"):
 
     if not os.path.exists(plot_directory):
         os.makedirs(plot_directory)
@@ -64,16 +64,16 @@ def CreateExampleData(ndata=1000, ngauss=1000, bins=50, sd_smear=0.1, title="NA"
     x = np.random.normal(mean, sd_smear, ndata)
     x = x + y
 
-    xbins = Bins(bins, -2.5, 2)
-    ybins = Bins(bins, -2.5, 2)
+    xbins = Bins(binsx, -1.5, 1.5)
+    ybins = Bins(bins, -1.5, 1.5)
 
     y = BinClass(y, bins, ybins)
-    x_weights = BinClass(x, bins, xbins)
+    x_weights = BinClass(x, binsx, xbins)
 
-    weights_x = [sum(Column(x_weights, i)) for i in range(bins)]
+    weights_x = [sum(Column(x_weights, i)) for i in range(binsx)]
     weights_y = [sum(Column(y, i)) for i in range(bins)]
 
-    plt.hist(xbins, bins, weights=weights_x, label="Detector Data", alpha=0.5, edgecolor='grey')
+    plt.hist(xbins, binsx, weights=weights_x, label="Detector Data", alpha=0.5, edgecolor='grey')
     plt.hist(ybins, bins, weights=weights_y, label="True Data", alpha=0.5, edgecolor='grey')
     plt.legend(loc='upper right')
     a = plot_directory + title
