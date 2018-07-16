@@ -14,14 +14,26 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import sys
 import os
 from ExampleData0 import *
 
+version = sys.version_info.major
+if version==2:
+    folder = sys.raw_input("Plotting Directory: ")
+    epochs = sys.raw_input("Epochs: ")
+else:
+    folder = sys.input("Plotting Directory: ")
+    epochs = sys.input("Epochs: ")
+
 parent = os.path.normpath(os.path.join(os.getcwd(), os.pardir))
-plot_directory = parent + "/Plots_eff/"
+plot_directory = parent + "/" + folder + "/"
 
 if not os.path.exists(plot_directory):
     os.makedirs(plot_directory)
+
+
+
 
 # Training Data -----------------------------------------------------------
 bins = 70
@@ -110,7 +122,7 @@ def BayesIteration(multi, train, test, bins):
         if k==150:
             break
         else:
-            model.fit(train.x, train.y, epochs=3000, batch_size=multi.batch, sample_weight=sample_weights)
+            model.fit(train.x, train.y, epochs=epochs, batch_size=multi.batch, sample_weight=sample_weights)
             k = k+1
 
     return model
