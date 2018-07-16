@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 
 from matplotlib.backends.backend_pdf import PdfPages
 
-def BinClass(x_train, bins, xbins):
+def BinClass(x_train, bins, xbins, ones=True):
     y_train = []
     for x in x_train:
         xvec = [x for i in range(bins)]
@@ -30,7 +30,10 @@ def BinClass(x_train, bins, xbins):
         else:
             yclass = max(yclass)
         y_train.append(yclass)
-    y_train = keras.utils.to_categorical(y_train, bins)
+    if ones==True:
+        y_train = keras.utils.to_categorical(y_train, bins)
+    else:
+        pass
     return y_train
 
 def Bins(bins, min, max):
@@ -50,9 +53,8 @@ class Data:
 
 # Training Data -----------------------------------------------------------
 
-def CreateExampleData(ndata=1000, ngauss=1000, bins=50, sd_smear=0.1, title="NA", sd=0.5, plots="/Plots_0/"):
+def CreateExampleData(ndata=1000, ngauss=1000, bins=50, sd_smear=0.1, title="NA", sd=0.5, plot_directory="Plots"):
 
-    plot_directory = os.getcwd() + "/Plots_2/"
     if not os.path.exists(plot_directory):
         os.makedirs(plot_directory)
 
@@ -62,8 +64,8 @@ def CreateExampleData(ndata=1000, ngauss=1000, bins=50, sd_smear=0.1, title="NA"
     x = np.random.normal(mean, sd_smear, ndata)
     x = x + y
 
-    xbins = Bins(bins, -4, 4)
-    ybins = Bins(bins, -4, 4)
+    xbins = Bins(bins, -2.5, 2)
+    ybins = Bins(bins, -2.5, 2)
 
     y = BinClass(y, bins, ybins)
     x_weights = BinClass(x, bins, xbins)
@@ -89,3 +91,10 @@ def SampleWeights(class_weights, train):
         sample_weights.append(class_weights[zclass[0]])
     sample_weights = np.asarray(sample_weights)
     return(sample_weights)
+
+def Num(x, bins):
+    n = []
+    for i in range(bins):
+        num = len([index for index, item in enumerate(x) if item == i])
+        n.append(num)
+    return n
