@@ -23,14 +23,14 @@ if version==2:
     folder = raw_input("Plotting Directory: ")
     epochs = int(raw_input("Epochs Training: "))
     epochs2 = int(raw_input("Epochs Iteration: "))
-    sd = int(raw_input("sd Training: "))
-    sd2 = int(raw_input("sd Testing: "))
+    sd = float(raw_input("sd Training: "))
+    sd2 = float(raw_input("sd Testing: "))
 else:
     folder = input("Plotting Directory: ")
     epochs = int(input("Epochs: "))
     epochs2 = int(input("Epochs Iteration: "))
-    sd = int(input("sd Training: "))
-    sd2 = int(input("sd Testing: "))
+    sd = float(input("sd Training: "))
+    sd2 = float(input("sd Testing: "))
 
 parent = os.path.normpath(os.path.join(os.getcwd(), os.pardir))
 plot_directory = parent + "/" + folder + "/"
