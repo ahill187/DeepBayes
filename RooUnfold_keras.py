@@ -38,16 +38,16 @@ if not os.path.exists(plot_directory):
 
 
 # Training Data -----------------------------------------------------------
-bins = 10
-binsx=15
+bins = 20
+binsx=20
 #sd = round(float(np.random.uniform(0, 1)), 8)
 sd = 0.6
-train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, binsx=binsx, sd=sd, sd_smear=0.1, plot_directory=plot_directory, ndata=5000)
+train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, binsx=binsx, sd=sd, sd_smear=0.1, plot_directory=plot_directory, ndata=10000)
 plt.close('all')
 
 # Testing Data -----------------------------------------------------------------------------------
 
-test = CreateExampleData(title="ExampleTestingData.pdf", bins=bins, binsx=binsx, sd=0.3, sd_smear=0.1, plot_directory=plot_directory, ndata=5000)
+test = CreateExampleData(title="ExampleTestingData.pdf", bins=bins, binsx=binsx, sd=0.3, sd_smear=0.1, plot_directory=plot_directory, ndata=10000)
 plt.close('all')
 # Keras Model -------------------------------------------------------------------------------------
 
