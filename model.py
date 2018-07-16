@@ -102,7 +102,7 @@ def BayesIteration(multi, train, test, bins):
         PlotHistogram(bins, test.xbins, test.ybins, test.x_weights, test.y_weights, k, plot_directory, "Testing",t, VecScalar(weights_predict, ndata))
         plt.close('all')
         t = ["MC True Distribution", "Measured True Distribution", "Predicted from Keras"]
-        PlotHistogram(bins, test.ybins, test.ybins, train.y_weights, test.y_weights, weights_predict, k, plot_directory, "Combined", t, VecScalar(weights_predict, ndata))
+        PlotHistogram(bins, test.ybins, test.ybins, train.y_weights, test.y_weights, k, plot_directory, "Combined", t, VecScalar(weights_predict, ndata))
         plt.close('all')
 
         sample_weights = SampleWeights(class_weights, train)
