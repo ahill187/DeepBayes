@@ -162,4 +162,4 @@ def BayesIteration(multi, train, test, bins, iterations):
 
 multi = MultiClassifier()
 multi.epochs = epochs
-model = BayesIteration(multi, train, test, bins)
+model = BayesIteration(multi, train, test, bins, 25)
