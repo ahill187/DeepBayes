@@ -20,11 +20,11 @@ from ExampleData0 import *
 
 version = sys.version_info.major
 if version==2:
-    folder = sys.raw_input("Plotting Directory: ")
-    epochs = sys.raw_input("Epochs: ")
+    folder = raw_input("Plotting Directory: ")
+    epochs = raw_input("Epochs: ")
 else:
-    folder = sys.input("Plotting Directory: ")
-    epochs = sys.input("Epochs: ")
+    folder = input("Plotting Directory: ")
+    epochs = input("Epochs: ")
 
 parent = os.path.normpath(os.path.join(os.getcwd(), os.pardir))
 plot_directory = parent + "/" + folder + "/"
