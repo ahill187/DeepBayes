@@ -176,7 +176,7 @@ def BayesIteration(multi, train, test, bins, iterations):
 
 multi = MultiClassifier()
 multi.epochs = epochs
-model = BayesIteration(multi, train, test, bins, 25)
+model = BayesIteration(multi, train, test, bins, 200)
 
 
 
