@@ -103,7 +103,7 @@ def BayesIteration(multi, train, test, bins):
         plt.close('all')
         prediction = model.predict(test.x)
         weights_predict = np.asarray([sum(Column(prediction, i)) for i in range(bins)])
-        weights_predict = VecScalar(weights_predict, 1/sum(weights_predict))
+        #weights_predict = VecScalar(weights_predict, 1/sum(weights_predict))
         y_weights = []
         for y in train.y_weights:
             if y==0:
