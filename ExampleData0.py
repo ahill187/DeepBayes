@@ -64,14 +64,16 @@ def CreateExampleData(ndata=1000, ngauss=1000, bins=50, binsx=50, sd_smear=0.1, 
     x = np.random.normal(mean, sd_smear, ndata)
     x = x + y
 
-    xbins = Bins(binsx, -1.5, 1.5)
-    ybins = Bins(bins, -1.5, 1.5)
+    xbins = Bins(binsx, -2, 2)
+    ybins = Bins(bins, -2, 2)
 
-    y = BinClass(y, bins, ybins)
+    y1 = BinClass(y, bins, ybins, ones=False)
+    y1 = np.asarray(y1)
     x_weights = BinClass(x, binsx, xbins)
+    y2 = BinClass(y, bins, ybins)
 
     weights_x = [sum(Column(x_weights, i)) for i in range(binsx)]
-    weights_y = [sum(Column(y, i)) for i in range(bins)]
+    weights_y = [sum(Column(y2, i)) for i in range(bins)]
 
     plt.hist(xbins, binsx, weights=weights_x, label="Detector Data", alpha=0.5, edgecolor='grey')
     plt.hist(ybins, bins, weights=weights_y, label="True Data", alpha=0.5, edgecolor='grey')
@@ -81,7 +83,7 @@ def CreateExampleData(ndata=1000, ngauss=1000, bins=50, binsx=50, sd_smear=0.1, 
     plt.close()
 
 
-    data = Data(ngauss, x, y, xbins, ybins, weights_x, weights_y)
+    data = Data(ngauss, x, y2, xbins, ybins, weights_x, weights_y)
     return data
 
 def SampleWeights(class_weights, train):
