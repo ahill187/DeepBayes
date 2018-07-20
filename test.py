@@ -128,13 +128,20 @@ def BayesIteration(multi, train, test, bins):
             break
         else:
             sd = round(float(np.random.uniform(0, 1)), 8)
-            trainp = train
+            if k==0:
+                trainp = train
+            else:
+                continue
             train = CreateExampleData(title="ExampleTrainingData_"+str(k)+".pdf", bins=bins, binsx=bins, sd=sd, sd_smear=0.1,
                                       plot_directory=plot_directory, ndata=ndata)
             plt.close('all')
             x = np.concatenate((trainp.x, train.x), axis=0)
             y = np.concatenate((trainp.y, train.y), axis=0)
+            x2 = np.concatenate((trainp.x, train.x[0:300]), axis=0)
+            y2 = np.concatenate((trainp.y, train.y[0:300]), axis=0)
             model.fit(x, y, epochs=epochs2, batch_size=multi.batch)
+            trainp.x = x2
+            trainp.y = y2
             #model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, sample_weight=sample_weights)
             k = k+1
 
