@@ -81,7 +81,8 @@ def prior(weight_matrix):
     reg[0] = class_weights
     return K.variable(reg)
 
-def Model(multi, x_train, y_train, bins):
+def Model(multi, x_train, y_train, bins, class_weights):
+    global class_weights
     model = Sequential()
     model.add(Dense(12, activation='relu', input_shape=(1,)))
     model.add(Dropout(0.5))
@@ -97,7 +98,7 @@ def Model(multi, x_train, y_train, bins):
 def BayesIteration(multi, train, test, bins):
 
     class_weights = np.zeros(bins)
-    model = Model(multi, train.x, train.y, bins)
+    model = Model(multi, train.x, train.y, bins, class_weights)
     k = 0
     score = []
     ndata = len(train.x)
