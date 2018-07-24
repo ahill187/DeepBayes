@@ -39,9 +39,6 @@ plot_directory = parent + "/" + folder + "/"
 if not os.path.exists(plot_directory):
     os.makedirs(plot_directory)
 
-
-
-
 # Training Data -----------------------------------------------------------
 bins = 20
 ndata = 10000
@@ -76,7 +73,8 @@ def PlotHistogram(bins, binsx, xbins, ybins, weights_x, weights_y, k, wd, a, t, 
 
 def prior(weight_matrix):
     reg = np.zeros(K.int_shape(weight_matrix))
-    reg[0] = class_weights
+    z = VecMult(class_weights, y_weights)
+    reg[0] = z
     return K.variable(reg)
 
 def Model(multi, x_train, y_train, bins):
@@ -96,6 +94,8 @@ def Model(multi, x_train, y_train, bins):
 def BayesIteration(multi, train, test, bins):
 
     global class_weights
+    global y_weights
+    y_weights = train.y_weights
     class_weights = np.zeros(bins)
     model = Model(multi, train.x, train.y, bins)
     k = 0
@@ -125,7 +125,7 @@ def BayesIteration(multi, train, test, bins):
 
         score.append(model.evaluate(test.x, test.y, batch_size=128))
 
-        print("Loss = {0}, Accuracy = {1}" .format(score[k][0], score[k][1]))
+        print("Loss = {0}, Accuracy = {1}" .format(score[k][1], score[k][2]))
         t = ["Measured Smeared", "Measured True Distribution", "Predicted from Keras"]
         PlotHistogram(bins, bins, test.xbins, test.ybins, test.x_weights, test.y_weights, k, plot_directory, "Testing",t, weights_predict)
         plt.close('all')
