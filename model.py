@@ -43,13 +43,13 @@ if not os.path.exists(plot_directory):
 
 # Training Data -----------------------------------------------------------
 bins = 20
-ndata = 10000
-train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, sd=sd, sd_smear=0.1, plot_directory=plot_directory, ndata=ndata)
+ndata = 1000
+train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, binsx=bins, sd=sd, sd_smear=0.1, plot_directory=plot_directory, ndata=ndata)
 plt.close('all')
 
 # Testing Data -----------------------------------------------------------------------------------
 
-test = CreateExampleData(title="ExampleTestingData.pdf", bins=bins, sd=sd2, sd_smear=0.1, plot_directory=plot_directory, ndata=ndata)
+test = CreateExampleData(title="ExampleTestingData.pdf", bins=bins, binsx=bins,sd=sd2, sd_smear=0.1, plot_directory=plot_directory, ndata=ndata)
 plt.close('all')
 # Keras Model -------------------------------------------------------------------------------------
 
@@ -61,7 +61,7 @@ class MultiClassifier:
         self.metrics = ['acc', 'mse', 'mae']
         self.loss = 'categorical_crossentropy'
 
-def PlotHistogram(bins, xbins, ybins, weights_x, weights_y, k, wd, a, t, weights_predict=[],num=3):
+def PlotHistogram(bins, binsx, xbins, ybins, weights_x, weights_y, k, wd, a, t, weights_predict=[],num=3):
     plt.hist(xbins, bins, weights=weights_x, label=t[0], alpha=0.5, edgecolor='grey', color='cyan')
     plt.hist(ybins, bins, weights=weights_y, label=t[1], alpha=0.5, edgecolor='grey', color='grey')
     if num==3:
@@ -99,7 +99,7 @@ def BayesIteration(multi, train, test, bins):
         prediction = model.predict(train.x)
         weights_predict_train = [sum(Column(prediction, i)) for i in range(bins)]
         t = ["MC Smeared", "MC True Distribution", "Predicted from Keras"]
-        PlotHistogram(bins, train.xbins, train.ybins, train.x_weights, train.y_weights, k, plot_directory, "Training", t, weights_predict_train)
+        PlotHistogram(bins, bins, train.xbins, train.ybins, train.x_weights, train.y_weights, k, plot_directory, "Training", t, weights_predict_train)
         plt.close('all')
         prediction = model.predict(test.x)
         weights_predict = np.asarray([sum(Column(prediction, i)) for i in range(bins)])
@@ -110,16 +110,18 @@ def BayesIteration(multi, train, test, bins):
                 y_weights.append(0.0000000001)
             else:
                 y_weights.append(y)
-        class_weights = np.asarray([weights_predict[i]/y_weights[i] for i in range(bins)])
+        class_weights = np.asarray([np.log(weights_predict[i]/y_weights[i]) for i in range(bins)])
+        a = range(0,bins)
+        class_dict = dict([(a[i], class_weights[i]) for i in range(bins)])
 
         score.append(model.evaluate(test.x, test.y, batch_size=128))
 
         print("Loss = {0}, Accuracy = {1}" .format(score[k][0], score[k][1]))
         t = ["Measured Smeared", "Measured True Distribution", "Predicted from Keras"]
-        PlotHistogram(bins, test.xbins, test.ybins, test.x_weights, test.y_weights, k, plot_directory, "Testing",t, weights_predict)
+        PlotHistogram(bins, bins, test.xbins, test.ybins, test.x_weights, test.y_weights, k, plot_directory, "Testing",t, weights_predict)
         plt.close('all')
         t = ["MC True Distribution", "Measured True Distribution", "Predicted from Keras"]
-        PlotHistogram(bins, test.ybins, test.ybins, train.y_weights, test.y_weights, k, plot_directory, "Combined", t, weights_predict)
+        PlotHistogram(bins, bins, test.ybins, test.ybins, train.y_weights, test.y_weights, k, plot_directory, "Combined", t, weights_predict)
         plt.close('all')
 
         sample_weights = SampleWeights(class_weights, train)
@@ -128,6 +130,7 @@ def BayesIteration(multi, train, test, bins):
             break
         else:
             model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, sample_weight=sample_weights)
+            #model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, class_weight=class_dict)
             k = k+1
 
     return model
