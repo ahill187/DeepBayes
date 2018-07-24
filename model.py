@@ -77,13 +77,17 @@ def prior(weight_matrix):
     reg[0] = z
     return K.variable(reg)
 
-def Model(multi, x_train, y_train, bins):
+def Model(multi, x_train, y_train, bins, reg):
     model = Sequential()
     model.add(Dense(12, activation='relu', input_shape=(1,)))
     model.add(Dropout(0.5))
     model.add(Dense(15, activation='relu'))
     model.add(Dropout(0.5))
-    model.add(Dense(bins, activation='softmax', kernel_regularizer=prior))
+    if reg==True:
+        model.add(Dense(bins, activation='softmax', kernel_regularizer=prior))
+    else:
+        model.add(Dense(bins, activation='softmax'))
+
     sgd = SGD(lr=multi.lr, decay=1e-6, momentum=0.9, nesterov=True)
     stop = EarlyStopping(patience=5)
     model.compile(loss=multi.loss, optimizer=sgd, metrics=multi.metrics)
@@ -97,7 +101,7 @@ def BayesIteration(multi, train, test, bins):
     global y_weights
     y_weights = train.y_weights
     class_weights = np.zeros(bins)
-    model = Model(multi, train.x, train.y, bins)
+    model = Model(multi, train.x, train.y, bins, False)
     k = 0
     score = []
     ndata = len(train.x)
@@ -144,7 +148,7 @@ def BayesIteration(multi, train, test, bins):
         else:
             #model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, sample_weight=sample_weights)
             #model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, class_weight=class_dict)
-            model = Model(multi, train.x, train.y, bins)
+            model = Model(multi, train.x, train.y, bins, True)
 
             k = k+1
 
