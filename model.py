@@ -44,7 +44,7 @@ if not os.path.exists(plot_directory):
 
 # Training Data -----------------------------------------------------------
 bins = 20
-ndata = 1000
+ndata = 10000
 train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, binsx=bins, sd=sd, sd_smear=0.1, plot_directory=plot_directory, ndata=ndata)
 plt.close('all')
 
