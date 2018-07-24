@@ -74,15 +74,12 @@ def PlotHistogram(bins, binsx, xbins, ybins, weights_x, weights_y, k, wd, a, t, 
     plt.savefig(wd + title)
     plt.close()
 
-
 def prior(weight_matrix):
     reg = np.zeros(K.int_shape(weight_matrix))
-    global class_weights
     reg[0] = class_weights
     return K.variable(reg)
 
-def Model(multi, x_train, y_train, bins, class_weights):
-    global class_weights
+def Model(multi, x_train, y_train, bins):
     model = Sequential()
     model.add(Dense(12, activation='relu', input_shape=(1,)))
     model.add(Dropout(0.5))
@@ -95,10 +92,12 @@ def Model(multi, x_train, y_train, bins, class_weights):
     model.fit(x_train, y_train, epochs=multi.epochs, batch_size=multi.batch, callbacks=[stop])
     return model
 
+
 def BayesIteration(multi, train, test, bins):
 
+    global class_weights
     class_weights = np.zeros(bins)
-    model = Model(multi, train.x, train.y, bins, class_weights)
+    model = Model(multi, train.x, train.y, bins)
     k = 0
     score = []
     ndata = len(train.x)
