@@ -136,6 +136,10 @@ def BayesIteration(multi, train, test, bins):
         sample_weights = SampleWeights(class_weights, train)
 
         if k==150:
+            plt.plot(np.arange(start=0, stop=k, step=1),Column(score, 0))
+            title = 'Score.png'
+            plt.savefig(wd + title)
+            plt.close('all')
             break
         else:
             #model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, sample_weight=sample_weights)
@@ -143,6 +147,7 @@ def BayesIteration(multi, train, test, bins):
             model = Model(multi, train.x, train.y, bins)
 
             k = k+1
+
 
     return model
 
