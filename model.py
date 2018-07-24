@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 import sys
 import os
 from ExampleData0 import *
-from Keras import backend as K
+from keras import backend as K
 
 version = sys.version_info.major
 if version==2:
