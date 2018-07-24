@@ -74,8 +74,10 @@ def PlotHistogram(bins, binsx, xbins, ybins, weights_x, weights_y, k, wd, a, t, 
     plt.savefig(wd + title)
     plt.close()
 
+
 def prior(weight_matrix):
     reg = np.zeros(K.int_shape(weight_matrix))
+    global class_weights
     reg[0] = class_weights
     return K.variable(reg)
 
@@ -136,8 +138,10 @@ def BayesIteration(multi, train, test, bins):
         if k==150:
             break
         else:
-            model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, sample_weight=sample_weights)
+            #model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, sample_weight=sample_weights)
             #model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, class_weight=class_dict)
+            model = Model(multi, train.x, train.y, bins)
+
             k = k+1
 
     return model
