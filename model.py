@@ -17,6 +17,7 @@ import matplotlib.pyplot as plt
 import sys
 import os
 from ExampleData0 import *
+from Keras import backend as K
 
 version = sys.version_info.major
 if version==2:
@@ -73,13 +74,18 @@ def PlotHistogram(bins, binsx, xbins, ybins, weights_x, weights_y, k, wd, a, t, 
     plt.savefig(wd + title)
     plt.close()
 
+def prior(weight_matrix):
+    reg = np.zeros(K.int_shape(weight_matrix))
+    reg[0] = class_weights
+    return K.variable(reg)
+
 def Model(multi, x_train, y_train, bins):
     model = Sequential()
-    model.add(Dense(20, activation='relu', input_shape=(1,)))
+    model.add(Dense(12, activation='relu', input_shape=(1,)))
     model.add(Dropout(0.5))
-    model.add(Dense(20, activation='relu'))
+    model.add(Dense(15, activation='relu'))
     model.add(Dropout(0.5))
-    model.add(Dense(bins, activation='softmax'))
+    model.add(Dense(bins, activation='softmax', kernel_regularizer=prior))
     sgd = SGD(lr=multi.lr, decay=1e-6, momentum=0.9, nesterov=True)
     stop = EarlyStopping(patience=5)
     model.compile(loss=multi.loss, optimizer=sgd, metrics=multi.metrics)
@@ -88,6 +94,7 @@ def Model(multi, x_train, y_train, bins):
 
 def BayesIteration(multi, train, test, bins):
 
+    class_weights = np.zeros(bins)
     model = Model(multi, train.x, train.y, bins)
     k = 0
     score = []
@@ -110,7 +117,7 @@ def BayesIteration(multi, train, test, bins):
                 y_weights.append(0.0000000001)
             else:
                 y_weights.append(y)
-        class_weights = np.asarray([weights_predict[i]/y_weights[i] for i in range(bins)])
+        class_weights = np.asarray([np.log(weights_predict[i]/y_weights[i]) for i in range(bins)])
         a = range(0,bins)
         class_dict = dict([(a[i], class_weights[i]) for i in range(bins)])
 
@@ -129,8 +136,8 @@ def BayesIteration(multi, train, test, bins):
         if k==150:
             break
         else:
-            #model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, sample_weight=sample_weights)
-            model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, class_weight=class_dict)
+            model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, sample_weight=sample_weights)
+            #model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, class_weight=class_dict)
             k = k+1
 
     return model
