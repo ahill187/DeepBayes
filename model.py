@@ -110,7 +110,7 @@ def BayesIteration(multi, train, test, bins):
                 y_weights.append(0.0000000001)
             else:
                 y_weights.append(y)
-        class_weights = np.asarray([np.log(weights_predict[i]/y_weights[i]) for i in range(bins)])
+        class_weights = np.asarray([weights_predict[i]/y_weights[i] for i in range(bins)])
         a = range(0,bins)
         class_dict = dict([(a[i], class_weights[i]) for i in range(bins)])
 
@@ -129,8 +129,8 @@ def BayesIteration(multi, train, test, bins):
         if k==150:
             break
         else:
-            model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, sample_weight=sample_weights)
-            #model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, class_weight=class_dict)
+            #model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, sample_weight=sample_weights)
+            model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, class_weight=class_dict)
             k = k+1
 
     return model
