@@ -107,6 +107,7 @@ def BayesIteration(multi, train, test, bins, epochs2):
     score = []
     ndata = len(train.x)
     model = model0
+    m = k
 
     while True:
 
@@ -114,7 +115,7 @@ def BayesIteration(multi, train, test, bins, epochs2):
         prediction = model.predict(train.x)
         weights_predict_train = [sum(Column(prediction, i)) for i in range(bins)]
         t = ["MC Smeared", "MC True Distribution", "Predicted from Keras"]
-        PlotHistogram(bins, bins, train.xbins, train.ybins, train.x_weights, train.y_weights, epochs2, plot_directory, "Training", t, weights_predict_train)
+        PlotHistogram(bins, bins, train.xbins, train.ybins, train.x_weights, train.y_weights, m, plot_directory, "Training", t, weights_predict_train)
         plt.close('all')
         prediction = model.predict(test.x)
         weights_predict = np.asarray([sum(Column(prediction, i)) for i in range(bins)])
@@ -133,15 +134,15 @@ def BayesIteration(multi, train, test, bins, epochs2):
 
         print("Loss = {0}, Accuracy = {1}" .format(score[k][1], score[k][2]))
         t = ["Measured Smeared", "Measured True Distribution", "Predicted from Keras"]
-        PlotHistogram(bins, bins, test.xbins, test.ybins, test.x_weights, test.y_weights, epochs2, plot_directory, "Testing",t, weights_predict)
+        PlotHistogram(bins, bins, test.xbins, test.ybins, test.x_weights, test.y_weights, m, plot_directory, "Testing",t, weights_predict)
         plt.close('all')
         t = ["MC True Distribution", "Measured True Distribution", "Predicted from Keras"]
-        PlotHistogram(bins, bins, test.ybins, test.ybins, train.y_weights, test.y_weights, epochs2, plot_directory, "Combined", t, weights_predict)
+        PlotHistogram(bins, bins, test.ybins, test.ybins, train.y_weights, test.y_weights, m, plot_directory, "Combined", t, weights_predict)
         plt.close('all')
         if k==0:
             sample_weights = SampleWeights(class_weights, train)
         else:
-            continue
+            pass
 
         if k==10:
             plt.plot(np.arange(start=0, stop=k, step=1),Column(score, 0))
@@ -151,11 +152,11 @@ def BayesIteration(multi, train, test, bins, epochs2):
             break
         else:
             model = model0
-            epochs2 = epochs2*2
             model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, sample_weight=sample_weights)
             #model.fit(train.x, train.y, epochs=epochs2, batch_size=multi.batch, class_weight=class_dict)
             #model = Model(multi, train.x, train.y, bins, True)
-
+            epochs2 = epochs2 * 2
+            m = epochs2
             k = k+1
 
 
