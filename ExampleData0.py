@@ -13,6 +13,7 @@ from Matrix import *
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
+from math import *
 import matplotlib.pyplot as plt
 
 
@@ -39,7 +40,24 @@ def BinClass(x_train, bins, xbins, ones=True):
 def Bins(bins, min, max):
     binwidth = np.abs(max - min) / (bins)
     binsplit = [min + i * binwidth for i in range(bins)]
+    binsplit[0] = -5
+    binsplit[19] = 5
     return binsplit
+
+def QuantileBins(bins, min, max, x):
+    quant = 100 / bins
+    binsplit = [min]
+    for i in range(1, bins):
+        percentile = np.percentile(x, i*quant)
+        binsplit.append(percentile)
+    return binsplit
+
+
+def ProbABNorm(a, b, mean=0, sd=0.1):
+    phi_a = 0.5*(1 + erf((a - mean)/(sd*sqrt(2))))
+    phi_b = 0.5 * (1 + erf((b - mean) / (sd * sqrt(2))))
+    prob = phi_b - phi_a
+    return prob
 
 class Data:
     def __init__(self, length, x, y, xbins, ybins, x_weights, y_weights):
@@ -53,7 +71,7 @@ class Data:
 
 # Training Data -----------------------------------------------------------
 
-def CreateExampleData(ndata=1000, ngauss=1000, bins=50, binsx=50, sd_smear=0.1, title="NA", sd=0.5, plot_directory="Plots"):
+def CreateExampleData(ndata=1000, ngauss=1000, bins=50, binsx=50, sd_smear=0.1, title="NA", sd=0.5, plot_directory="Plots", quantiles=False):
 
     if not os.path.exists(plot_directory):
         os.makedirs(plot_directory)
@@ -64,8 +82,12 @@ def CreateExampleData(ndata=1000, ngauss=1000, bins=50, binsx=50, sd_smear=0.1, 
     x = np.random.normal(mean, sd_smear, ndata)
     x = x + y
 
-    xbins = Bins(binsx, -2, 2)
-    ybins = Bins(bins, -2, 2)
+    if quantiles==False:
+        xbins = Bins(binsx, -2, 2)
+        ybins = Bins(bins, -2, 2)
+    else:
+        xbins = QuantileBins(binsx, -50, 50, x)
+        ybins = QuantileBins(bins, -50, 50, y)
 
     y1 = BinClass(y, bins, ybins, ones=False)
     y1 = np.asarray(y1)
@@ -75,8 +97,8 @@ def CreateExampleData(ndata=1000, ngauss=1000, bins=50, binsx=50, sd_smear=0.1, 
     weights_x = [sum(Column(x_weights, i)) for i in range(binsx)]
     weights_y = [sum(Column(y2, i)) for i in range(bins)]
 
-    plt.hist(xbins, binsx, weights=weights_x, label="Detector Data", alpha=0.5, edgecolor='grey')
-    plt.hist(ybins, bins, weights=weights_y, label="True Data", alpha=0.5, edgecolor='grey')
+    plt.hist(xbins, xbins, weights=weights_x, label="Detector Data", alpha=0.5, edgecolor='grey')
+    plt.hist(ybins, ybins, weights=weights_y, label="True Data", alpha=0.5, edgecolor='grey')
     plt.legend(loc='upper right')
     a = plot_directory + title
     plt.savefig(a)
@@ -100,3 +122,5 @@ def Num(x, bins):
         num = len([index for index, item in enumerate(x) if item == i])
         n.append(num)
     return n
+
+
