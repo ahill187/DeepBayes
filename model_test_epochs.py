@@ -96,7 +96,7 @@ def Model(multi, x_train, y_train, bins, reg):
     return model
 
 
-def BayesIteration(multi, train, test, bins):
+def BayesIteration(multi, train, test, bins, epochs2):
 
     global class_weights
     global y_weights
@@ -163,4 +163,4 @@ def BayesIteration(multi, train, test, bins):
 
 multi = MultiClassifier()
 multi.epochs = epochs
-model = BayesIteration(multi, train, test, bins)
+model = BayesIteration(multi, train, test, bins, epochs2)
