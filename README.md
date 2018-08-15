@@ -2,6 +2,12 @@
 
 Unfolding the W boson momentum using DNN's and Bayesian unfolding.
 
+## Getting Started
+
+### Prerequisites
+
+You will need to have Keras and Tensorflow installed. The current Keras version will not work with CUDA 9.2, however, so you will need to install CUDA 9.0 and cuDNN 7.0.
+
 ## Toy Example
 
 For our toy example, we are generating our own testing and training data as follows:
@@ -18,13 +24,13 @@ z = Gaussian distributed data (default: mean = 0, sd = 0.4)
 
 x = Smeared data: Gaussian random variable added to each point in z (default smearing: mean = 0, sd = 0.1)
 
-### Running Model
+### Running Toy Model
 
 ```
 cd DeepBayes
 python model.py
 ```
-Wait for the prompt for you to input your settings. It will ask for a Plotting Directory; this will create a directory for the plots in the parent folder of DeepBayes (one folder up). 
+Wait for the prompt for you to input your settings. It will ask for a Plotting Directory; if you specify a full path, it will put the plots in the specified folder. If you specify a single name, it would create that folder in the parent directory.
 
 The next prompt will ask if you would like to use the default settings. If you choose "Y", the model will use the default settings of:
 
