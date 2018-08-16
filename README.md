@@ -19,7 +19,19 @@ Select the operating system <br>
 ```
 $ tar -zxf root_<version>.tar.gz
 ```
-
+3. Create a build directory:
+```
+$ mkdir <builddir>
+$ cd <builddir>
+```
+4. Execute cmake command:
+```
+$ cmake <path_to_root_download/root-<version>>
+```
+Example:
+```
+$ cmake /home/ahill/root-6.14.02
+```
 ## Toy Example
 
 For our toy example, we are generating our own testing and training data as follows:
