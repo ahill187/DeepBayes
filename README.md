@@ -85,9 +85,9 @@ export LD_LIBRARY_PATH=$ROOTSYS/lib:$LD_LIBRARY_PATH
 export PYTHONPATH=$PYTHONPATH:$ROOTSYS/lib
 export PYTHONSTARTUP=$HOME/.pythonstartup
 ```
-### DeepML and DeepJetCore
+### Installing DeepML
 
-The D
+The DeepML package was developed by Pedro da Silva, and can be found on GitLab. I have adapted the package to use with DeepBayes, so please use the version from my repository for DeepBayes. To install DeepML, please see the README file at https://github.com/ahill187/DeepML.
 
 ## Toy Example
 
