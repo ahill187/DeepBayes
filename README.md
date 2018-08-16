@@ -12,7 +12,7 @@ You will need ROOT installed on your computer.
 ### Installing ROOT
 
 Instructions for installing ROOT are available at: <br>
-> https://root.cern.ch/building-root
+> https://root.cern.ch/building-root <br>
 I have simplified the instructions for the location-independent install below. 
 
 1. Download ROOT *tar.gz file <br>
@@ -40,11 +40,27 @@ $ cmake /home/ahill/root-6.14.02
 ```
 $ cmake --build .
 ```
-6. Run
+6. Run <br>
 Each time you run ROOT, you must enter the following into terminal:
 ```
 $ source <builddir>/bin/thisroot.sh
 $ root
+```
+### Using PyROOT
+
+If running Python in terminal, you can use the following commands to use PyROOT:
+```
+$ source <builddir>/bin/thisroot.sh
+$ python
+$ import ROOT
+```
+If you would like to use PyROOT in PyCharm, there are 3 options:
+1. Add path to Project Structure:
+```
+Open PyCharm
+File -> Settings -> Project: src -> Project Structure
++ Add Content Root
+<builddir>/lib
 ```
 ## Toy Example
 
