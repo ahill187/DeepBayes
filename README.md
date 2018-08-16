@@ -173,6 +173,10 @@ The `-m 200` is the model number. This specifies the neural network structure wh
 
 The `<output_directory>` is where the results will go; you may choose this yourself. 
 
-3. 
+3. Train the neural network.
+```
+$ cd <deep_learning_directory>/DeepBayes
+$ python deep_bayes/model.py
+```
 
 
