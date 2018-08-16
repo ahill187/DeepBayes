@@ -85,9 +85,30 @@ export LD_LIBRARY_PATH=$ROOTSYS/lib:$LD_LIBRARY_PATH
 export PYTHONPATH=$PYTHONPATH:$ROOTSYS/lib
 export PYTHONSTARTUP=$HOME/.pythonstartup
 ```
+### Installing DeepJetCore
+
+The DeepJetCore master fork can be found here: https://github.com/DL4Jets/DeepJetCore. To use this package with DeepBayes, I have edited some of the files, so please use the forked version on my repository:
+> https://github.com/ahill187/DeepJetCore
+
+To install DeepJetCore:
+```
+$ cd <deep_learning_directory>
+$ git clone https://github.com/ahill187/DeepJetCore.git
+$ cd DeepJetCore/compiled
+$ make -j 4
+```
 ### Installing DeepML
 
-The DeepML package was developed by Pedro da Silva, and can be found on GitLab. I have adapted the package to use with DeepBayes, so please use the version from my repository for DeepBayes. To install DeepML, please see the README file at https://github.com/ahill187/DeepML.
+The DeepML package was developed by Pedro da Silva, and can be found on GitLab. I have adapted the package to use with DeepBayes, so please use the version from my repository for DeepBayes. You can find the repository along with a README file at:
+> https://github.com/ahill187/DeepML
+
+To install DeepML:
+```
+$ cd <deep_learning_directory>
+$ git clone https://github.com/ahill187/DeepML.git
+```
+Please note that DeepML and DeepJetCore must be in the same parent directory. The instructions for installing DeepML and DeepJetCore are modified from the original instructions at
+> https://twiki.cern.ch/twiki/bin/view/Main/VpTNotes#Training_the_recoil_regression
 
 ## Toy Example
 
