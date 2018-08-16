@@ -28,7 +28,7 @@ $ cd <builddir>
 ```
 $ cmake <path_to_root_download/root-<version>>
 ```
-+ Example:
+>> Example:
 ```
 $ cmake /home/ahill/root-6.14.02
 ```
