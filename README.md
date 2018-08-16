@@ -133,10 +133,11 @@ Depending on the speed of your computer, this should take between 10 - 60 minute
 
 ### Plots
 
-You can view the plots in the plotting directory specified previously. 
-<em> Combined Plots <em>
+You can view the plots in the plotting directory specified previously. <br>
+<b> Combined Plots </b>
 > these plots show the unfolded training data, unfolded testing data, and the prediction. 
 
+<b> Training Plots </b>
 > Training Plots: these plots are to verify how well the initial model performed on the training data, and to monitor how the predictions change with the reweighting. They show the smeared training data, the unfolded training data, and the prediction for the training data.
 
 > Testing Plots: these plots show how well the model is performing on new data. They show the smeared testing data, the unfolded testing data, and the prediction for the testing data.
