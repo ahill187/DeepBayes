@@ -111,6 +111,16 @@ $ git clone https://github.com/ahill187/DeepML.git
 Please note that DeepML and DeepJetCore must be in the same parent directory. The instructions for installing DeepML and DeepJetCore are modified from the original instructions at
 > https://twiki.cern.ch/twiki/bin/view/Main/VpTNotes#Training_the_recoil_regression
 
+## Installing DeepBayes
+
+Though not necessary, I have simplified the install by putting it into the same directory as DeepML and DeepJetCore. Again, not mandatory, you can install it wherever you would like. <br>
+
+To install DeepBayes:
+```
+$ cd <deep_learning_directory>
+$ git clone https://github.com/ahill187/DeepBayes.git
+```
+
 ## Tests - Toy Model
 
 The DeepBayes model uses W recoil variables to reconstruct the W momentum. To test the model, however, we used Gaussian data. Please see <insert link here> for more information.
@@ -153,9 +163,10 @@ Score
 ```
 TRAINPATH = <deep_learning_directory>/DeepML
 ```
-2. 
+2. Get the ROOT trees and set up the training data.
 ```
-$ sh /home/ahill/DeepBayes/runRecoilRegression_AH.sh -r train -m 200 -i /home/ahill/DeepLearning/CMSSW_10_2_0_pre5/src/DeepML/data/recoil_file_list.txt -w /home/ahill/output_directory
+$ sh <deep_learning_directory>/DeepBayes/runRecoilRegression.sh -r train -m 200 -i <deep_learning_directory>/DeepML/data/recoil_file_list.txt -w <output_directory>
 ```
+The `-m 200` is the model number. This specifies the neural network structure which will be used such as number of nodes, number of layers, etc. If you would like to modify or add a model, you can do so by adding your own model to `DeepBayes/RecoilModels.py`, and then updating the MODELLIST in `DeepBayes/get_data.py`.
 
 
