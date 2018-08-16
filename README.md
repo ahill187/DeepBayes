@@ -62,6 +62,29 @@ File -> Settings -> Project: src -> Project Structure
 + Add Content Root
 <builddir>/lib
 ```
+2. Add the ROOT library to the system path
+```
+Open PyCharm
+import sys
+sys.path.extend['<builddir>/lib']
+```
+> Example:
+```
+sys.path.extend['/home/ahill/builddir/lib/]
+```
+3. Edit the pycharm.sh script
+```
+$ cd /opt/pycharm-<version>/bin
+$ sudo gedit pycharm.sh
+```
+Add the following to the top of the script:
+```
+export ROOTSYS=$HOME/builddir
+export PATH=$ROOTSYS/bin:$PATH
+export LD_LIBRARY_PATH=$ROOTSYS/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$PYTHONPATH:$ROOTSYS/lib
+export PYTHONSTARTUP=$HOME/.pythonstartup
+```
 ## Toy Example
 
 For our toy example, we are generating our own testing and training data as follows:
