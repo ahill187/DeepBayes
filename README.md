@@ -15,7 +15,10 @@ You will need ROOT installed on your computer.
 https://root.cern.ch/downloading-root <br>
 Select the ROOT version (6.14/02) <br>
 Select the operating system <br>
-2. Extract the *tar.gz file
+2. Extract the *tar.gz file:
+```
+$ tar -zxf root_<version>.tar.gz
+```
 
 ## Toy Example
 
