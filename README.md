@@ -13,6 +13,7 @@ You will need ROOT installed on your computer.
 
 Instructions for installing ROOT are available at: <br>
 > https://root.cern.ch/building-root <br>
+
 I have simplified the instructions for the location-independent install below. 
 
 1. Download ROOT *tar.gz file <br>
@@ -134,8 +135,11 @@ Depending on the speed of your computer, this should take between 10 - 60 minute
 
 You can view the plots in the plotting directory specified previously. 
 > Combined Plots: these plots show the unfolded training data, unfolded testing data, and the prediction. 
+
 > Training Plots: these plots are to verify how well the initial model performed on the training data, and to monitor how the predictions change with the reweighting. They show the smeared training data, the unfolded training data, and the prediction for the training data.
+
 > Testing Plots: these plots show how well the model is performing on new data. They show the smeared testing data, the unfolded testing data, and the prediction for the testing data.
+
 > Score: the Score.png plot shows the loss for each iteration.
 
 
