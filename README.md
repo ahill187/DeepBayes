@@ -9,6 +9,14 @@ Unfolding the W boson momentum using DNN's and Bayesian unfolding.
 You will need to have Keras and Tensorflow installed. The current Keras version will not work with CUDA 9.2, however, so you will need to install CUDA 9.0 and cuDNN 7.0.
 You will need ROOT installed on your computer. 
 
+### Installing ROOT
+
+1. Download ROOT *tar.gz file <br>
+https://root.cern.ch/downloading-root <br>
+Select the ROOT version (6.14/02) <br>
+Select the operating system <br>
+2. Extract the *tar.gz file
+
 ## Toy Example
 
 For our toy example, we are generating our own testing and training data as follows:
