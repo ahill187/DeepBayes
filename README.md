@@ -110,21 +110,9 @@ $ git clone https://github.com/ahill187/DeepML.git
 Please note that DeepML and DeepJetCore must be in the same parent directory. The instructions for installing DeepML and DeepJetCore are modified from the original instructions at
 > https://twiki.cern.ch/twiki/bin/view/Main/VpTNotes#Training_the_recoil_regression
 
-## Toy Example
+## Tests - Toy Model
 
-For our toy example, we are generating our own testing and training data as follows:
-
-### Training Data ("Monte Carlo Simulated"): 
-
-z = Gaussian distributed data (default: mean = 0, sd = 0.6)
-
-x = Smeared data: Gaussian random variable added to each point in z (default smearing: mean = 0, sd = 0.1)
-
-### Testing Data ("Real Data"):
-
-z = Gaussian distributed data (default: mean = 0, sd = 0.4)
-
-x = Smeared data: Gaussian random variable added to each point in z (default smearing: mean = 0, sd = 0.1)
+The DeepBayes model uses W recoil variables to reconstruct the W momentum. To test the model, however, we used Gaussian data. Please see <insert link here> for more information.
 
 ### Running Toy Model
 
@@ -144,25 +132,10 @@ Depending on the speed of your computer, this should take between 10 - 60 minute
 
 ### Plots
 
-You can view the plots in the plotting directory specified previously. The number in the plot title indicates the iteration, i.e.
+You can view the plots in the plotting directory specified previously. 
+> Combined Plots: these plots show the unfolded training data, unfolded testing data, and the prediction. 
+> Training Plots: these plots are to verify how well the initial model performed on the training data, and to monitor how the predictions change with the reweighting. They show the smeared training data, the unfolded training data, and the prediction for the training data.
+> Testing Plots: these plots show how well the model is performing on new data. They show the smeared testing data, the unfolded testing data, and the prediction for the testing data.
+> Score: the Score.png plot shows the loss for each iteration.
 
-k = 0 is the initial iteration, after training the DNN on the training data<br>
-k = 1 is the first Bayes iteration<br>
-...<br>
-k = 30 is the last Bayes iteration in the default data
 
-#### Combined Plots
-
-These plots show the unfolded training data, unfolded testing data, and the prediction from the model.
-
-#### Training Plots
-
-These plots show the smeared training data, the unfolded training data, and the prediction from the model.
-
-#### Testing Plots
-
-These plots show the smeared testing data, the unfolded testing data, and the prediction from the model.
-
-#### Score
-
-The Score.png plot shows the loss for each iteration. Lower loss means the algorithm is improving.
