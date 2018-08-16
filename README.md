@@ -134,6 +134,7 @@ Depending on the speed of your computer, this should take between 10 - 60 minute
 ### Plots
 
 You can view the plots in the plotting directory specified previously. <br>
+
 Combined Plots 
 > These plots show the unfolded training data, unfolded testing data, and the prediction. 
 
@@ -145,5 +146,16 @@ Testing Plots
 
 Score
 > The Score.png plot shows the loss for each iteration.
+
+## Running the Model
+
+1. The first time you run the model, you will need to edit the file name in the file DeepBayes/runRecoilRegression.sh. At the top of the file, there is a variable called TRAINPATH. 
+```
+TRAINPATH = <deep_learning_directory>/DeepML
+```
+2. 
+```
+$ sh /home/ahill/DeepBayes/runRecoilRegression_AH.sh -r train -m 200 -i /home/ahill/DeepLearning/CMSSW_10_2_0_pre5/src/DeepML/data/recoil_file_list.txt -w /home/ahill/output_directory
+```
 
 
