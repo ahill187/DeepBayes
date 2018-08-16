@@ -167,6 +167,10 @@ TRAINPATH = <deep_learning_directory>/DeepML
 ```
 $ sh <deep_learning_directory>/DeepBayes/runRecoilRegression.sh -r train -m 200 -i <deep_learning_directory>/DeepML/data/recoil_file_list.txt -w <output_directory>
 ```
-The `-m 200` is the model number. This specifies the neural network structure which will be used such as number of nodes, number of layers, etc. If you would like to modify or add a model, you can do so by adding your own model to `DeepBayes/RecoilModels.py`, and then updating the MODELLIST in `DeepBayes/get_data.py`.
+The `-m 200` is the model number. This specifies the neural network structure which will be used such as number of nodes, number of layers, etc. If you would like to modify or add a model, you can do so by adding your own model to `DeepBayes/RecoilModels.py`, and then updating the MODELLIST in `DeepBayes/get_data.py`. <br>
+`-i <...>/recoil_file_list.txt` specifies the list of ROOT tree data from Monte Carlo simulations. <br>
+The `<output_directory>` is where the results will go; you may choose this yourself. 
+
+3. 
 
 
