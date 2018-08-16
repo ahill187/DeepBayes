@@ -11,6 +11,10 @@ You will need ROOT installed on your computer.
 
 ### Installing ROOT
 
+Instructions for installing ROOT are available at: <br>
+> https://root.cern.ch/building-root
+I have simplified the instructions for the location-independent install below. 
+
 1. Download ROOT *tar.gz file <br>
 https://root.cern.ch/downloading-root <br>
 Select the ROOT version (6.14/02) <br>
@@ -31,6 +35,16 @@ $ cmake <path_to_root_download/root-<version>>
 > Example:
 ```
 $ cmake /home/ahill/root-6.14.02
+```
+5. Build
+```
+$ cmake --build .
+```
+6. Run
+Each time you run ROOT, you must enter the following into terminal:
+```
+$ source <builddir>/bin/thisroot.sh
+$ root
 ```
 ## Toy Example
 
