@@ -128,7 +128,7 @@ The DeepBayes model uses W recoil variables to reconstruct the W momentum. To te
 ### Running Toy Model
 
 ```
-cd DeepBayes
+cd DeepBayes/toy_model
 python model.py
 ```
 Wait for the prompt for you to input your settings. It will ask for a Plotting Directory; if you specify a full path, it will put the plots in the specified folder. If you specify a single name, it would create that folder in the parent directory.
