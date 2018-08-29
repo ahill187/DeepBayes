@@ -4,6 +4,14 @@ Unfolding the W boson momentum using DNN's and Bayesian unfolding.
 
 ## Getting Started
 
+This project was developed as part of the CERN Summer Student 2018 program.It is recommended that you read through the introductory paper before using the package: <br>
+> https://github.com/ahill187/DeepBayes/blob/optiplex/documentation/unfolding-w-boson(2).pdf
+
+For further information, please contact:
+> Ainsleigh Hill ainsleigh.hill@alumni.ubc.ca
+> Josh Bendavid Josh.Bendavid@cern.ch
+> Pedro da Silva Pedro.Silva@cern.ch
+
 ### Prerequisites
 
 You will need to have Keras and Tensorflow installed. The current Keras version will not work with CUDA 9.2, however, so you will need to install CUDA 9.0 and cuDNN 7.0.
