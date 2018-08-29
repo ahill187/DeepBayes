@@ -35,13 +35,13 @@ def Bins(bins, min, max, uneven=False, custom=False, weights=[]):
                     binsplit.append(max)
           return binsplit
 
-def BinError(y, prediction, bins):
+def BinError(y, prediction, bins, ndata, n_train):
 
           error =[]
           for i in range(bins):
-                    z = sum(Column(y, i)) + 0.0001
+                    z = sum(Column(y, i))*(ndata / n_train) + 0.0001
                     h = sum(Column(prediction, i)) +0.0001
-                    err = (z - h)/z
+                    err = (z - h)/(z+h)
                     error.append(err)
           return error
 

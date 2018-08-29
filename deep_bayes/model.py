@@ -62,7 +62,7 @@ parser.add_argument("--gpufraction", help="select memory fraction for GPU", type
                               default=-1)
 args = parser.parse_args()
 
-plot_directory = args.plots+"/"+folder
+plot_directory = args.plots+"/"+folder+"/"
 
 if not os.path.exists(plot_directory):
           os.makedirs(plot_directory)
@@ -145,7 +145,8 @@ def BayesIteration(model, n_train, ndata, bins, train, fast, adjust, test_weight
 
                     # Calculate Sample Weights
                     weights_predict = [sum(Column(prediction, i)) for i in range(bins)]
-                    binerror = BinError(data.y, model.predict(np.asarray(data.x)), bins)
+                    binerror = BinError(data.y, model.predict(np.asarray(data.x)), bins, ndata, n_train)
+                    print(binerror)
                     # Bin Error
                     if adjust['binerror']:
                               error = VecMult(weights_predict, binerror)
@@ -153,7 +154,10 @@ def BayesIteration(model, n_train, ndata, bins, train, fast, adjust, test_weight
                               class_weights = np.asarray([weights_predict[i]/y_weights_class[i] for i in range(bins)])
                     elif adjust['binerror2']:
                               class_weights = np.asarray([weights_predict[i] / y_weights_class[i] for i in range(bins)])
+                              binerror = [np.abs(b) for b in binerror]
+                              print(binerror)
                               class_weights = ErrorAdjust(binerror, class_weights, c=damping_constant)
+                              print(class_weights)
                     # Damping
                     elif adjust['damping']:
                               class_weights = np.asarray([weights_predict[i]/y_weights_class[i] for i in range(bins)])

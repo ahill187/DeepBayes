@@ -46,7 +46,7 @@ def fitModel(train, MODELLIST, custom=False, bin_weights=[], ndata=1000, **fitar
           nbatches = int(round(ndata / batchsize))
           if nbatches == 0:
               nbatches = 1
-          print("Number of Data points = %d" % nbatches*batchsize)
+          #print("Number of Data points = %d" % nbatches*batchsize)
           # model,history = train.trainModel(nepochs=nepochs,
           #                               batchsize=batchsize,
           #                               stop_patience=300, #stop after N-epochs if validation loss increases
