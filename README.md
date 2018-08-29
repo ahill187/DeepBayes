@@ -33,12 +33,12 @@ Select the operating system <br>
 $ tar -zxf root_<version>.tar.gz
 ```
 3. Create a build directory:
-```
+```bash
 $ mkdir <builddir>
 $ cd <builddir>
 ```
 4. Execute cmake command:
-```
+```bash
 $ cmake <path_to_root_download/root-<version>>
 ```
 > Example:
