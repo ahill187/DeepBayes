@@ -8,8 +8,8 @@ This project was developed as part of the CERN Summer Student 2018 program.It is
 > https://github.com/ahill187/DeepBayes/blob/optiplex/documentation/unfolding-w-boson(2).pdf
 
 For further information, please contact:
-> Ainsleigh Hill ainsleigh.hill@alumni.ubc.ca
-> Josh Bendavid Josh.Bendavid@cern.ch
+> Ainsleigh Hill ainsleigh.hill@alumni.ubc.ca <br>
+> Josh Bendavid Josh.Bendavid@cern.ch <br>
 > Pedro da Silva Pedro.Silva@cern.ch
 
 ### Prerequisites
