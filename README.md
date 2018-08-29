@@ -163,15 +163,15 @@ Score
 ```
 TRAINPATH = <deep_learning_directory>/DeepML
 ```
-2. Get the ROOT trees and set up the training data.
+2. The first time you train the model, you will need to convert the ROOT trees to Python:
 ```
-$ sh <deep_learning_directory>/DeepBayes/runRecoilRegression.sh -r train -m 200 -i <deep_learning_directory>/DeepML/data/recoil_file_list.txt -w <output_directory>
+$ cd <deep_learning_dir>/DeepML
+$ sh <deep_learning_dir>/DeepBayes/runRecoil
+Regression_AH.sh -r convert -m <num> -i <deep_
+learning_dir>/DeepML/data/recoil_file_list.t
+xt -w <output_directory>
 ```
-The `-m 200` is the model number. This specifies the neural network structure which will be used such as number of nodes, number of layers, etc. If you would like to modify or add a model, you can do so by adding your own model to `DeepBayes/RecoilModels.py`, and then updating the MODELLIST in `DeepBayes/get_data.py`. <br>
-
-`-i <...>/recoil_file_list.txt` specifies the list of ROOT tree data from Monte Carlo simulations. <br>
-
-The `<output_directory>` is where the results will go; you may choose this yourself. 
+Here "convert" specifies that we want to convert the trees. The variable <num> should be an integer, and specifies the model number to be used for Keras. The model numbers are defined in the file \textbf{DeepBayes/deep\_bayes/settings.py}, and the models are described in \textbf{DeepBayes/deep\_bayes/dnn\_models.py}. The "recoil\_file\_list.txt" is a text file containing the names of the ROOT files to convert, to be accessed via the CERN network. The <output\_directory> is the directory where the results will be.
 
 3. Train the neural network.
 ```
