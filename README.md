@@ -42,23 +42,23 @@ $ cd <builddir>
 $ cmake <path_to_root_download/root-<version>>
 ```
 > Example:
-```
+```bash
 $ cmake /home/ahill/root-6.14.02
 ```
 5. Build
-```
+```bash
 $ cmake --build .
 ```
 6. Run <br>
 Each time you run ROOT, you must enter the following into terminal:
-```
+```bash
 $ source <builddir>/bin/thisroot.sh
 $ root
 ```
 ### Using PyROOT
 
 If running Python in terminal, you can use the following commands to use PyROOT:
-```
+```bash
 $ source <builddir>/bin/thisroot.sh
 $ python
 $ import ROOT
@@ -82,7 +82,7 @@ sys.path.extend['<builddir>/lib']
 sys.path.extend['/home/ahill/builddir/lib/]
 ```
 3. Edit the pycharm.sh script
-```
+```bash
 $ cd /opt/pycharm-<version>/bin
 $ sudo gedit pycharm.sh
 ```
@@ -100,7 +100,7 @@ The DeepJetCore master fork can be found here: https://github.com/DL4Jets/DeepJe
 > https://github.com/ahill187/DeepJetCore
 
 To install DeepJetCore:
-```
+```bash
 $ cd <deep_learning_directory>
 $ git clone https://github.com/ahill187/DeepJetCore.git
 $ cd DeepJetCore/compiled
@@ -112,7 +112,7 @@ The DeepML package was developed by Pedro da Silva, and can be found on GitLab. 
 > https://github.com/ahill187/DeepML
 
 To install DeepML:
-```
+```bash
 $ cd <deep_learning_directory>
 $ git clone https://github.com/ahill187/DeepML.git
 ```
@@ -124,7 +124,7 @@ Please note that DeepML and DeepJetCore must be in the same parent directory. Th
 Though not necessary, I have simplified the install by putting it into the same directory as DeepML and DeepJetCore. Again, not mandatory, you can install it wherever you would like. <br>
 
 To install DeepBayes:
-```
+```bash
 $ cd <deep_learning_directory>
 $ git clone https://github.com/ahill187/DeepBayes.git
 ```
@@ -135,8 +135,8 @@ The DeepBayes model uses W recoil variables to reconstruct the W momentum. To te
 
 ### Running Toy Model
 
-```
-cd DeepBayes/toy_model
+```bash
+cd <deep_learning_dir>/DeepBayes/toy_model
 python model.py
 ```
 Wait for the prompt for you to input your settings. It will ask for a Plotting Directory; if you specify a full path, it will put the plots in the specified folder. If you specify a single name, it would create that folder in the parent directory.
@@ -172,14 +172,14 @@ Score
 TRAINPATH = <deep_learning_directory>/DeepML
 ```
 2. The first time you train the model, you will need to convert the ROOT trees to Python:
-```
+```bash
 $ cd <deep_learning_dir>/DeepML
 $ sh <deep_learning_dir>/DeepBayes/runRecoilRegression_AH.sh -r convert -m <num> -i <deep_learning_dir>/DeepML/data/recoil_file_list.txt -w <output_directory>
 ```
 Here "convert" specifies that we want to convert the trees. The variable <num> should be an integer, and specifies the model number to be used for Keras. The model numbers are defined in the file DeepBayes/deep_bayes/settings.py, and the models are described in DeepBayes/deep_bayes/dnn_models.py. The "recoil_file_list.txt" is a text file containing the names of the ROOT files to convert, to be accessed via the CERN network. The <output_directory> is the directory where the results will be.
 
 3. Train the neural network.
-```
+```bash
 $ cd <deep_learning_directory>/DeepML
 $ sh <deep_learning_dir>/DeepBayes/runRecoilRegression_AH.sh -r train -m <num> -i <deep_learning_dir>/DeepML/data/recoil_file_list.txt -w <output_directory>
 ```
