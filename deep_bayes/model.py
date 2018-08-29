@@ -147,7 +147,7 @@ def BayesIteration(model, n_train, ndata, bins, train, fast, adjust, test_weight
                     weights_predict = [sum(Column(prediction, i)) for i in range(bins)]
                     binerror = BinError(data.y, model.predict(np.asarray(data.x)), bins)
                     # Bin Error
-                    if adjust['binerror1']:
+                    if adjust['binerror']:
                               error = VecMult(weights_predict, binerror)
                               weights_predict = VecAdd(weights_predict, error)
                               class_weights = np.asarray([weights_predict[i]/y_weights_class[i] for i in range(bins)])
