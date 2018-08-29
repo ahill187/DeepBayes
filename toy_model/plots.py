@@ -1,6 +1,4 @@
 from __future__ import division
-from Matrix import *
-import numpy as np
 import matplotlib
 # matplotlib.use('Agg')
 matplotlib.use('TKAgg')
@@ -9,12 +7,14 @@ from ExampleData0 import *
 
 
 def PlotHistogram(bins, binsx, xbins, ybins, weights_x, weights_y, k, wd, a, t, weights_predict=[],num=3):
-        plt.hist(xbins[0:binsx], xbins, weights=weights_x, label=t[0], alpha=0.5, edgecolor='grey', color='cyan')
-        plt.hist(ybins[0:bins], ybins, weights=weights_y, label=t[1], alpha=0.5, edgecolor='grey', color='grey')
+        plt.hist(xbins[0:binsx], xbins, weights=weights_x, label=t[0], color='orchid', histtype='step', linewidth=1.5)
+        plt.hist(ybins[0:bins], ybins, weights=weights_y, label=t[1], color='forestgreen', histtype='step', linewidth=1.5)
         if num==3:
-                plt.hist(ybins[0:bins], ybins, weights=weights_predict, label=t[2], alpha=0.5, edgecolor='grey', color='yellow')
+                plt.hist(ybins[0:bins], ybins, weights=weights_predict, label=t[2], color='goldenrod', histtype='step', linewidth=1.5)
         else:
                 pass
+        plt.xlabel('Recoil True p_T (GeV)')
+        plt.ylabel('Events')
         plt.legend(loc='upper right', fontsize='x-small')
         title = a + "_Iteration_" + str(k) + ".png"
         plt.savefig(wd + title)
