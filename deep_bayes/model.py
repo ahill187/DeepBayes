@@ -90,12 +90,12 @@ else:
 # Create README File--------------------------------------------------------------------------
 
 f = open(plot_directory+'README.txt', 'w+')
-text = ["Date: ", "Epochs Training: ", "Epochs Bayes: ", "Regularization: ", "Optimizer: ", "Layers: ", "Learning Rate: ", "Model: ", "Bins: ", "Test Weights: "]
+text = ["Date: ", "Epochs Training: ", "Epochs Bayes: ", "Regularization: ", "Optimizer: ", "Layers: ", "Learning Rate: ", "Model: ", "Bins: ", "Test Weights: ", "Data Points: "]
 date = datetime.datetime.now()
 layers = MODELLIST[model_num]['arch']
 lr = MODELLIST[model_num]['learningrate']
 reg = MODELLIST[model_num]['reg']
-info = [str(date.year)+"_"+str(date.month)+"_"+str(date.day), str(epochs), str(epochs2), str(reg), "Nadam", str(layers), str(lr), str(model_num), str(bins), str(test_weights)]
+info = [str(date.year)+"_"+str(date.month)+"_"+str(date.day), str(epochs), str(epochs2), str(reg), "Nadam", str(layers), str(lr), str(model_num), str(bins), str(test_weights), str(n_train)]
 for i in range(len(text)):
           f.write(text[i]+info[i]+"\n")
 f.close()
@@ -105,7 +105,8 @@ f.close()
 def BayesIteration(model, n_train, ndata, bins, train, fast, adjust, test_weights_list, data="", iterations=30, damping_constant=1):
 
           if not fast:
-              data = getTrainingData(train, ndata)
+                    data = getTrainingData(train, ndata)
+                    n_train = ndata
           y_weights_class= []
           for y in data.y_weights:
                     if y == 0:
@@ -115,7 +116,9 @@ def BayesIteration(model, n_train, ndata, bins, train, fast, adjust, test_weight
           if n_train != ndata:
                     y_weights_class=[y*(ndata/n_train) for y in y_weights_class]
           reweight = reweightData(y_weights_class, ndata, test_weights_list[test_weights])
+          valweight = reweightData(y_weights_class, ndata, test_weights_list['evenbins'])
           test = getTestingData(train, reweight, ndata)
+          val = getTestingData(train, valweight, ndata)
           newbins = Bins(bins, train.train_data.ybins[0], train.train_data.ybins[bins], uneven=False)
           k = 0
           score = []
@@ -186,7 +189,7 @@ def BayesIteration(model, n_train, ndata, bins, train, fast, adjust, test_weight
                               if fast:
                                         #fitModelFastReweight(data, model, epochs2, multi.batch, sample_weights)
                                         model.fit(x=np.asarray(data.x), y=np.asarray(data.y), epochs=epochs2,
-                                                  batch_size=multi.batch, sample_weight=sample_weights)
+                                                  batch_size=multi.batch, sample_weight=sample_weights, validation_data=(np.asarray(val.x), np.asarray(val.y)))
                                         # model.fit(x=np.asarray(data.x), y=np.asarray(data.y), epochs=epochs2,
                                         #           batch_size=multi.batch)
                               else:
