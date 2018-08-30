@@ -19,4 +19,4 @@ DEFAULTLIST = {'folder':'Plots', 'epochs':25, 'epochs2':25, 'fast':False, 'ndata
 
 BIN = [0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 8, 10, 20]
 
-ADJUST = {'binerror':False, 'damping':False, 'retrain':False, 'binerror2':False}
+ADJUST = {'binerror':False, 'damping':False, 'retrain':False, 'binerror2':True}

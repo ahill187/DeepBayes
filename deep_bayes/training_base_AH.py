@@ -3,9 +3,7 @@ from __future__ import division
 from __future__ import print_function
 #sys.path.append('/home/ahill/DeepLearning/CMSSW_10_2_0_pre5/src/DeepJetCore/training/')
 #sys.path.append('/home/ahill/DeepLearning/CMSSW_10_2_0_pre5/src/DeepJetCore/')
-## to call it from cammand lines
 import shutil
-#from DeepJetCore.DataCollection import DataCollection
 from DataCollection_AH import DataCollection
 import imp
 
@@ -227,7 +225,7 @@ class training_base(object):
                     self.val_data.writeToFile(self.outputDir+'valsamples.dc')
 
                     #make sure tokens don't expire
-                    #from .tokenTools import checkTokens, renew_token_process
+                    from DeepJetCore.training.tokenTools import checkTokens, renew_token_process
                     from thread import start_new_thread
 
                     if self.renewtokens:

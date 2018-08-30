@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
           name='deep_bayes',
           version='1.0',
-          description='A useful module',
+          description='Unfolding the W momentum',
           author='Ainsleigh Hill',
           author_email='ainsleigh.hill@alumni.ubc.ca',
           packages=['deep_bayes'],  #same as name

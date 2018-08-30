@@ -4,7 +4,6 @@ Created on 21 Feb 2017
 @author: jkiesele
 '''
 from __future__ import print_function
-from Matrix import *
 from DeepJetCore.Weighter import Weighter
 from DeepJetCore.TrainData import TrainData, fileTimeOut
 import logging
