@@ -1,53 +1,56 @@
 #------------------------------
 # Author: Ainsleigh Hill
+# Email: ainsleigh.hill@alumni.ubc.ca
 # Date created: 180606
-# Date modified: 180606
-# Description: Testing keras
+# Date modified: 180814
+# Description: Testing toy model
 #------------------------------
 from __future__ import division
-from keras.models import Sequential, Model
-from keras.layers import Dense, Dropout, Activation, Conv2D, MaxPooling2D, Flatten, Input, LSTM, Embedding
-from keras.optimizers import SGD
-from keras.callbacks import EarlyStopping
-import keras.regularizers as regularizers
-from Matrix import *
+from builtins import input
+import datetime
+import os
 import numpy as np
 import matplotlib
-matplotlib.use('Agg')
+# matplotlib.use('Agg')
+from ExampleData0 import CreateExampleData, Bins, BinError, SampleWeights
+from plots import PlotData, PlotQuantile
+from models import MultiClassifier, Model
+from settings import DEFAULTLIST
+from Matrix import Column, VecMult, VecAdd
+matplotlib.use('TKAgg')
 import matplotlib.pyplot as plt
-import sys
-import os
-from ExampleData0 import *
-from plots import *
-from models import *
-from keras import backend as K
 
-version = sys.version_info.major
-if version==2:
-          folder = raw_input("Plotting Directory: ")
-          epochs = int(raw_input("Epochs Training: "))
-          epochs2 = int(raw_input("Epochs Iteration: "))
-          sd = float(raw_input("sd Training: "))
-          sd2 = float(raw_input("sd Testing: "))
-else:
+default = input('Default (Yes or No)? ')
+if default == "No" or default == 'N':
           folder = input("Plotting Directory: ")
           epochs = int(input("Epochs: "))
           epochs2 = int(input("Epochs Iteration: "))
           sd = float(input("sd Training: "))
           sd2 = float(input("sd Testing: "))
+else:
+          folder=DEFAULTLIST['folder']
+          epochs = DEFAULTLIST['epochs']
+          epochs2 = DEFAULTLIST['epochs2']
+          sd = DEFAULTLIST['sd']
+          sd2 = DEFAULTLIST['sd2']
 
-parent = os.path.normpath(os.path.join(os.getcwd(), os.pardir))
-plot_directory = parent + "/" + folder + "/"
+# Setting the Plotting Directory
+if "/" in folder:
+          plot_directory = folder
+else:
+          parent = os.path.normpath(os.path.join(os.getcwd(), os.pardir))
+          plot_directory = parent + "/" + folder + "/"
 
 if not os.path.exists(plot_directory):
           os.makedirs(plot_directory)
 
 # Training Data -----------------------------------------------------------
-bins = 20
-ndata = 10000
-sd_smear=0.1
-reg = 0
-lr = 0.00001
+bins = DEFAULTLIST['bins']
+ndata = DEFAULTLIST['ndata']
+sd_smear = DEFAULTLIST['sd_smear']
+iterations = DEFAULTLIST['iterations']
+reg = DEFAULTLIST['reg']
+lr = DEFAULTLIST['lr']
 train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, binsx=bins, sd=sd, sd_smear=sd_smear, plot_directory=plot_directory, ndata=ndata, quantiles=1)
 plt.close('all')
 
@@ -137,4 +140,4 @@ def BayesIteration(multi, train, test, bins, reg, iterations):
 multi = MultiClassifier()
 multi.epochs = epochs
 multi.lr = lr
-model = BayesIteration(multi, train, test, bins, reg, iterations=30)
+model = BayesIteration(multi, train, test, bins, reg, iterations=iterations)

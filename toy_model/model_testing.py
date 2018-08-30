@@ -149,3 +149,4 @@ multi = MultiClassifier()
 multi.epochs = epochs
 multi.lr = 0.00001
 score= TestIteration(multi, train, test, bins, parameter="bayes", reg0=0, iterations=30)
+
