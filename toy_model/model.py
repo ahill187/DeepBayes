@@ -21,9 +21,18 @@ from models import *
 from plots import *
 from keras import backend as K
 
+# Default Settings
+epochs = 15000
+epochs2 = 1000
+sd = 0.6
+sd2 = 0.4
+iterations = 30
+
+# User Defined Settings
 version = sys.version_info.major
 if version==2:
           folder = raw_input("Plotting Directory: ")
+<<<<<<< HEAD:toy_model/model.py
           epochs = int(raw_input("Epochs Training: "))
           epochs2 = int(raw_input("Epochs Iteration: "))
           sd = float(raw_input("sd Training: "))
@@ -34,6 +43,28 @@ else:
           epochs2 = int(input("Epochs Iteration: "))
           sd = float(input("sd Training: "))
           sd2 = float(input("sd Testing: "))
+=======
+          defaults = raw_input("Use Defaults? (Y or N) ")
+          if defaults == "Y":
+                    pass
+          elif defaults == "N":
+                    epochs = int(raw_input("Epochs Training: "))
+                    epochs2 = int(raw_input("Epochs Iteration: "))
+                    sd = float(raw_input("sd Training: "))
+                    sd2 = float(raw_input("sd Testing: "))
+                    iterations = int(raw_input("Iterations: "))
+else:
+          folder = input("Plotting Directory: ")
+          defaults = input("Use Defaults? (Y or N) ")
+          if defaults == "Y":
+                    pass
+          elif defaults == "N":
+                    epochs = int(input("Epochs: "))
+                    epochs2 = int(input("Epochs Iteration: "))
+                    sd = float(input("sd Training: "))
+                    sd2 = float(input("sd Testing: "))
+                    iterations = int(input("Iterations: "))
+>>>>>>> 8328a85f508214b656a4f28ee7896b61fa035ef5:model.py
 
 parent = os.path.normpath(os.path.join(os.getcwd(), os.pardir))
 plot_directory = parent + "/" + folder + "/"
@@ -51,8 +82,8 @@ plt.close('all')
 
 test = CreateExampleData(title="ExampleTestingData.pdf", bins=bins, binsx=bins,sd=sd2, sd_smear=0.1, plot_directory=plot_directory, ndata=ndata)
 plt.close('all')
-# Keras Model -------------------------------------------------------------------------------------
 
+# Keras Model -------------------------------------------------------------------------------------
 def BayesIteration(multi, train, test, bins, iterations):
 
           global class_weights
@@ -119,4 +150,4 @@ def BayesIteration(multi, train, test, bins, iterations):
 
 multi = MultiClassifier()
 multi.epochs = epochs
-model = BayesIteration(multi, train, test, bins, iterations=30)
+model = BayesIteration(multi, train, test, bins, iterations=iterations)
