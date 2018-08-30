@@ -167,9 +167,10 @@ Score
 
 ## Running the Model
 
-1. The first time you run the model, you will need to edit the file name in the file DeepBayes/runRecoilRegression.sh. At the top of the file, there is a variable called TRAINPATH. 
+1. The first time you run the model, you will need to edit the directories in the file DeepBayes/runRecoilRegression_AH.sh. At the top of the file, there are variables called TRAINPATH and DEEPBAYES.
 ```
 TRAINPATH = <deep_learning_directory>/DeepML
+DEEPBAYES = <deep_learning_directory>/DeepBayes
 ```
 2. The first time you train the model, you will need to convert the ROOT trees to Python:
 ```bash
