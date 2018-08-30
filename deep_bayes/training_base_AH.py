@@ -1,14 +1,12 @@
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-import sys
-sys.path.append('/home/ahill/DeepLearning/CMSSW_10_2_0_pre5/src/DeepJetCore/training/')
-sys.path.append('/home/ahill/DeepLearning/CMSSW_10_2_0_pre5/src/DeepJetCore/')
+#sys.path.append('/home/ahill/DeepLearning/CMSSW_10_2_0_pre5/src/DeepJetCore/training/')
+#sys.path.append('/home/ahill/DeepLearning/CMSSW_10_2_0_pre5/src/DeepJetCore/')
 ## to call it from cammand lines
 import shutil
 #from DeepJetCore.DataCollection import DataCollection
 from DataCollection_AH import DataCollection
-from pdb import set_trace
 import imp
 
 try:
@@ -230,7 +228,6 @@ class training_base(object):
 
                     #make sure tokens don't expire
                     #from .tokenTools import checkTokens, renew_token_process
-                    from DeepJetCore.training import tokenTools
                     from thread import start_new_thread
 
                     if self.renewtokens:
@@ -260,7 +257,6 @@ class training_base(object):
                     #self.keras_model.save(self.outputDir+'KERAS_check_last_model.h5')
                     print('setting up callbacks')
                     #from .DeepJet_callbacks import DeepJet_callbacks
-                    from DeepJetCore.training.DeepJet_callbacks import DeepJet_callbacks
                     #import DeepJetCore.training.DeepJet_callbacks
 
                     # self.callbacks=DeepJet_callbacks(self.keras_model,

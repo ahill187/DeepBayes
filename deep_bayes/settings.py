@@ -14,7 +14,7 @@ MODELLIST= {
           201: { "method":denseDNN, 'arch':'100x100x30x100',   "dropout":0.5, "batchNorm": False, "splitInputs": False,  'pfix':'', "loss":categorical_crossentropy, "learningrate":0.00001,  "nepochs":200, "batchsize":1024, 'reg':0, 'bins':20}
 }
 
-DEFAULTLIST = {'folder':'Plots', 'epochs':1, 'epochs2':50, 'fast':False, 'ndata':10000, 'n_train':1000000,'bins':20, 'custom':True,
+DEFAULTLIST = {'folder':'Plots', 'epochs':25, 'epochs2':25, 'fast':False, 'ndata':10000, 'n_train':1000000,'bins':20, 'custom':True,
                                         'test_weights':'evenbins2', 'damping_constant':1, 'iterations':200}
 
 BIN = [0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 8, 10, 20]
