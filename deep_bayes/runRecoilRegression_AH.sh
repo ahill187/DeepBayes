@@ -48,7 +48,11 @@ setup_env() {
 run() {
 
     operation=$1
-    rundir=$2/${operation}
+    if [[ "${operation}" == "convert" ]]; then
+      rundir=$2/"train"
+    else
+      rundir=$2/${operation}
+    fi
     model=$3
     cut=$4
     file_list=$5
