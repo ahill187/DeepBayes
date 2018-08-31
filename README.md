@@ -101,6 +101,7 @@ The DeepJetCore master fork can be found here: https://github.com/DL4Jets/DeepJe
 
 To install DeepJetCore:
 ```bash
+$ mkdir <deep_learning_directory>
 $ cd <deep_learning_directory>
 $ git clone https://github.com/ahill187/DeepJetCore.git
 $ cd DeepJetCore/compiled
