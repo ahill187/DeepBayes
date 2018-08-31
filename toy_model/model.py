@@ -32,6 +32,7 @@ iterations = 30
 version = sys.version_info.major
 if version==2:
           folder = raw_input("Plotting Directory: ")
+<<<<<<< HEAD
 <<<<<<< HEAD:toy_model/model.py
           epochs = int(raw_input("Epochs Training: "))
           epochs2 = int(raw_input("Epochs Iteration: "))
@@ -55,6 +56,19 @@ else:
                     iterations = int(raw_input("Iterations: "))
 else:
           folder = input("Plotting Directory: ")
+=======
+          defaults = raw_input("Use Defaults? (Y or N) ")
+          if defaults == "Y":
+                    pass
+          elif defaults == "N":
+                    epochs = int(raw_input("Epochs Training: "))
+                    epochs2 = int(raw_input("Epochs Iteration: "))
+                    sd = float(raw_input("sd Training: "))
+                    sd2 = float(raw_input("sd Testing: "))
+                    iterations = int(raw_input("Iterations: "))
+else:
+          folder = input("Plotting Directory: ")
+>>>>>>> optiplex
           defaults = input("Use Defaults? (Y or N) ")
           if defaults == "Y":
                     pass
@@ -64,7 +78,10 @@ else:
                     sd = float(input("sd Training: "))
                     sd2 = float(input("sd Testing: "))
                     iterations = int(input("Iterations: "))
+<<<<<<< HEAD
 >>>>>>> 8328a85f508214b656a4f28ee7896b61fa035ef5:model.py
+=======
+>>>>>>> optiplex
 
 parent = os.path.normpath(os.path.join(os.getcwd(), os.pardir))
 plot_directory = parent + "/" + folder + "/"

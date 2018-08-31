@@ -301,4 +301,3 @@ class training_base(object):
 
                     #return self.keras_model, self.callbacks.history
                     return self.keras_model
-
