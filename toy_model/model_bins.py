@@ -27,12 +27,14 @@ if default == "No" or default == 'N':
           epochs2 = int(input("Epochs Iteration: "))
           sd = float(input("sd Training: "))
           sd2 = float(input("sd Testing: "))
+          iterations = float(input("Iterations: "))
 else:
           folder=DEFAULTLIST['folder']
           epochs = DEFAULTLIST['epochs']
           epochs2 = DEFAULTLIST['epochs2']
           sd = DEFAULTLIST['sd']
           sd2 = DEFAULTLIST['sd2']
+          iterations = DEFAULTLIST['iterations']
 
 # Setting the Plotting Directory
 if "/" in folder:
@@ -48,7 +50,6 @@ if not os.path.exists(plot_directory):
 bins = DEFAULTLIST['bins']
 ndata = DEFAULTLIST['ndata']
 sd_smear = DEFAULTLIST['sd_smear']
-iterations = DEFAULTLIST['iterations']
 reg = DEFAULTLIST['reg']
 lr = DEFAULTLIST['lr']
 train = CreateExampleData(title="ExampleTrainingData.pdf", bins=bins, binsx=bins, sd=sd, sd_smear=sd_smear, plot_directory=plot_directory, ndata=ndata, quantiles=1)

@@ -12,88 +12,27 @@ For further information, please contact:
 > Josh Bendavid Josh.Bendavid@cern.ch <br>
 > Pedro da Silva Pedro.Silva@cern.ch
 
+This project to run in the CMSSW environment at CERN. If you would like to do a local install, please see the file Local_Install.md. 
+
 ### Prerequisites
 
-You will need to have Keras and Tensorflow installed. The current Keras version will not work with CUDA 9.2, however, so you will need to install CUDA 9.0 and cuDNN 7.0.
-You will need ROOT installed on your computer. 
+### CMSSW
 
-### Installing ROOT
+To set up the CMSSW environment for the first time:
 
-Instructions for installing ROOT are available at: <br>
-> https://root.cern.ch/building-root <br>
+```bash
+$ cd 
+$ cmsrel CMSSW_10_2_0_pre5
+$ cd CMSSW_10_2_0_pre5/src
+$ cmsenv
+```
+For subsequent times:
 
-I have simplified the instructions for the location-independent install below. 
+```bash
+$ cd CMSSW_10_2_0_pre5/src
+$ cmsenv
+```
 
-1. Download ROOT *tar.gz file <br>
-https://root.cern.ch/downloading-root <br>
-Select the ROOT version (6.14/02) <br>
-Select the operating system <br>
-2. Extract the *tar.gz file:
-```
-$ tar -zxf root_<version>.tar.gz
-```
-3. Create a build directory:
-```bash
-$ mkdir <builddir>
-$ cd <builddir>
-```
-4. Execute cmake command:
-```bash
-$ cmake <path_to_root_download/root-<version>>
-```
-> Example:
-```bash
-$ cmake /home/ahill/root-6.14.02
-```
-5. Build
-```bash
-$ cmake --build .
-```
-6. Run <br>
-Each time you run ROOT, you must enter the following into terminal:
-```bash
-$ source <builddir>/bin/thisroot.sh
-$ root
-```
-### Using PyROOT
-
-If running Python in terminal, you can use the following commands to use PyROOT:
-```bash
-$ source <builddir>/bin/thisroot.sh
-$ python
-$ import ROOT
-```
-If you would like to use PyROOT in PyCharm, there are 3 options:
-1. Add path to Project Structure:
-```
-Open PyCharm
-File -> Settings -> Project: src -> Project Structure
-+ Add Content Root
-<builddir>/lib
-```
-2. Add the ROOT library to the system path
-```
-Open PyCharm
-import sys
-sys.path.extend['<builddir>/lib']
-```
-> Example:
-```
-sys.path.extend['/home/ahill/builddir/lib/]
-```
-3. Edit the pycharm.sh script
-```bash
-$ cd /opt/pycharm-<version>/bin
-$ sudo gedit pycharm.sh
-```
-Add the following to the top of the script:
-```
-export ROOTSYS=$HOME/builddir
-export PATH=$ROOTSYS/bin:$PATH
-export LD_LIBRARY_PATH=$ROOTSYS/lib:$LD_LIBRARY_PATH
-export PYTHONPATH=$PYTHONPATH:$ROOTSYS/lib
-export PYTHONSTARTUP=$HOME/.pythonstartup
-```
 ### Installing DeepJetCore
 
 The DeepJetCore master fork can be found here: https://github.com/DL4Jets/DeepJetCore. To use this package with DeepBayes, I have edited some of the files, so please use the forked version on my repository:
@@ -101,6 +40,9 @@ The DeepJetCore master fork can be found here: https://github.com/DL4Jets/DeepJe
 
 To install DeepJetCore:
 ```bash
+$ cd CMSSW_10_2_0_pre5/src
+$ cmsenv
+$ mkdir <deep_learning_directory>
 $ cd <deep_learning_directory>
 $ git clone https://github.com/ahill187/DeepJetCore.git
 $ cd DeepJetCore/compiled
@@ -135,9 +77,15 @@ The DeepBayes model uses W recoil variables to reconstruct the W momentum. To te
 
 ### Running Toy Model
 
+There are two files in the toy_model folder: model.py and model_bins.py. The first uses Gaussian distributions with equal binwidths, while the second uses variant binwidths with equal events (quantiles). 
 ```bash
-cd <deep_learning_dir>/DeepBayes/toy_model
-python model.py
+cd <deep_learning_dir>/DeepBayes
+python toy_model/model.py
+```
+or 
+```bash
+cd <deep_learning_dir>/DeepBayes
+python toy_model/model_bins.py
 ```
 Wait for the prompt for you to input your settings. It will ask for a Plotting Directory; if you specify a full path, it will put the plots in the specified folder. If you specify a single name, it would create that folder in the parent directory.
 
@@ -167,7 +115,7 @@ Score
 
 ## Running the Model
 
-1. The first time you run the model, you will need to edit the directories in the file DeepBayes/runRecoilRegression_AH.sh. At the top of the file, there are variables called TRAINPATH and DEEPBAYES.
+1. The first time you run the model, you will need to edit the directories in the file DeepBayes/deep_bayes/runRecoilRegression_AH.sh. At the top of the file, there are variables called TRAINPATH and DEEPBAYES.
 ```
 TRAINPATH = <deep_learning_directory>/DeepML
 DEEPBAYES = <deep_learning_directory>/DeepBayes
@@ -175,7 +123,7 @@ DEEPBAYES = <deep_learning_directory>/DeepBayes
 2. The first time you train the model, you will need to convert the ROOT trees to Python:
 ```bash
 $ cd <deep_learning_dir>/DeepML
-$ sh <deep_learning_dir>/DeepBayes/runRecoilRegression_AH.sh -r convert -m <num> -i <deep_learning_dir>/DeepML/data/recoil_file_list.txt -w <output_directory>
+$ sh <deep_learning_dir>/DeepBayes/deep_bayes/runRecoilRegression_AH.sh -r convert -m <num> -i <deep_learning_dir>/DeepML/data/recoil_file_list.txt -w <output_directory>
 ```
 Here "convert" specifies that we want to convert the trees. The variable <num> should be an integer, and specifies the model number to be used for Keras. The model numbers are defined in the file DeepBayes/deep_bayes/settings.py, and the models are described in DeepBayes/deep_bayes/dnn_models.py. The "recoil_file_list.txt" is a text file containing the names of the ROOT files to convert, to be accessed via the CERN network. The <output_directory> is the directory where the results will be.
 

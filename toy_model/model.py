@@ -5,6 +5,7 @@
 # Description: Testing keras
 #------------------------------
 from __future__ import division
+from builtins import input
 from keras.models import Sequential, Model
 from keras.layers import Dense, Dropout, Activation, Conv2D, MaxPooling2D, Flatten, Input, LSTM, Embedding
 from keras.optimizers import SGD
@@ -29,6 +30,7 @@ sd2 = 0.4
 iterations = 30
 
 # User Defined Settings
+<<<<<<< HEAD
 version = sys.version_info.major
 if version==2:
           folder = raw_input("Plotting Directory: ")
@@ -40,10 +42,18 @@ if version==2:
           sd2 = float(raw_input("sd Testing: "))
 else:
           folder = input("Plotting Directory: ")
+=======
+
+defaults = input("Use Defaults? (Y or N) ")
+if defaults == "Y":
+          pass
+elif defaults == "N":       
+>>>>>>> 01eaecd333343dddacaff40aa64f699dff1ebb6b
           epochs = int(input("Epochs: "))
           epochs2 = int(input("Epochs Iteration: "))
           sd = float(input("sd Training: "))
           sd2 = float(input("sd Testing: "))
+<<<<<<< HEAD
 =======
           defaults = raw_input("Use Defaults? (Y or N) ")
           if defaults == "Y":
@@ -83,6 +93,10 @@ else:
 =======
 >>>>>>> optiplex
 
+=======
+          iterations = int(input("Iterations: "))
+folder = input("Plotting Directory: ")
+>>>>>>> 01eaecd333343dddacaff40aa64f699dff1ebb6b
 parent = os.path.normpath(os.path.join(os.getcwd(), os.pardir))
 plot_directory = parent + "/" + folder + "/"
 
