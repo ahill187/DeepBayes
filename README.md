@@ -176,7 +176,7 @@ Score
 
 ## Running the Model
 
-1. The first time you run the model, you will need to edit the directories in the file DeepBayes/runRecoilRegression_AH.sh. At the top of the file, there are variables called TRAINPATH and DEEPBAYES.
+1. The first time you run the model, you will need to edit the directories in the file DeepBayes/deep_bayes/runRecoilRegression_AH.sh. At the top of the file, there are variables called TRAINPATH and DEEPBAYES.
 ```
 TRAINPATH = <deep_learning_directory>/DeepML
 DEEPBAYES = <deep_learning_directory>/DeepBayes
@@ -184,7 +184,7 @@ DEEPBAYES = <deep_learning_directory>/DeepBayes
 2. The first time you train the model, you will need to convert the ROOT trees to Python:
 ```bash
 $ cd <deep_learning_dir>/DeepML
-$ sh <deep_learning_dir>/DeepBayes/runRecoilRegression_AH.sh -r convert -m <num> -i <deep_learning_dir>/DeepML/data/recoil_file_list.txt -w <output_directory>
+$ sh <deep_learning_dir>/DeepBayes/deep_bayes/runRecoilRegression_AH.sh -r convert -m <num> -i <deep_learning_dir>/DeepML/data/recoil_file_list.txt -w <output_directory>
 ```
 Here "convert" specifies that we want to convert the trees. The variable <num> should be an integer, and specifies the model number to be used for Keras. The model numbers are defined in the file DeepBayes/deep_bayes/settings.py, and the models are described in DeepBayes/deep_bayes/dnn_models.py. The "recoil_file_list.txt" is a text file containing the names of the ROOT files to convert, to be accessed via the CERN network. The <output_directory> is the directory where the results will be.
 
