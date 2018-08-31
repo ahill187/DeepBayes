@@ -12,6 +12,8 @@ For further information, please contact:
 > Josh Bendavid Josh.Bendavid@cern.ch <br>
 > Pedro da Silva Pedro.Silva@cern.ch
 
+This project to run in the CMSSW environment at CERN. 
+
 ### Prerequisites
 
 You will need to have Keras and Tensorflow installed. The current Keras version will not work with CUDA 9.2, however, so you will need to install CUDA 9.0 and cuDNN 7.0.
@@ -136,9 +138,15 @@ The DeepBayes model uses W recoil variables to reconstruct the W momentum. To te
 
 ### Running Toy Model
 
+There are two files in the toy_model folder: model.py and model_bins.py. The first uses Gaussian distributions with equal binwidths, while the second uses variant binwidths with equal events (quantiles). 
 ```bash
-cd <deep_learning_dir>/DeepBayes/toy_model
-python model.py
+cd <deep_learning_dir>/DeepBayes
+python toy_model/model.py
+```
+or 
+```bash
+cd <deep_learning_dir>/DeepBayes
+python toy_model/model_bins.py
 ```
 Wait for the prompt for you to input your settings. It will ask for a Plotting Directory; if you specify a full path, it will put the plots in the specified folder. If you specify a single name, it would create that folder in the parent directory.
 
