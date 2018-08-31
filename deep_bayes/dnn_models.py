@@ -202,5 +202,3 @@ def denseDNN(Inputs, nclasses, nregclasses, dropoutRate=None, batchNorm=False, s
 
           x = Dense(bins, activation='softmax', kernel_regularizer=regularizers.l2(reg),  name='mu' + pfix)(x)
           return Model(inputs=Inputs, outputs=[x])
-
-
