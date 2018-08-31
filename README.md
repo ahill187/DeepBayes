@@ -12,12 +12,27 @@ For further information, please contact:
 > Josh Bendavid Josh.Bendavid@cern.ch <br>
 > Pedro da Silva Pedro.Silva@cern.ch
 
-This project to run in the CMSSW environment at CERN. 
+This project to run in the CMSSW environment at CERN. If you would like to do a local install, please see the file Local_Install.md. 
 
 ### Prerequisites
 
+### CMSSW
 
+To set up the CMSSW environment for the first time:
+
+```bash
+$ cd 
+$ cmsrel CMSSW_10_2_0_pre5
+$ cd CMSSW_10_2_0_pre5/src
+$ cmsenv
 ```
+For subsequent times:
+
+```bash
+$ cd CMSSW_10_2_0_pre5/src
+$ cmsenv
+```
+
 ### Installing DeepJetCore
 
 The DeepJetCore master fork can be found here: https://github.com/DL4Jets/DeepJetCore. To use this package with DeepBayes, I have edited some of the files, so please use the forked version on my repository:
@@ -25,6 +40,8 @@ The DeepJetCore master fork can be found here: https://github.com/DL4Jets/DeepJe
 
 To install DeepJetCore:
 ```bash
+$ cd CMSSW_10_2_0_pre5/src
+$ cmsenv
 $ mkdir <deep_learning_directory>
 $ cd <deep_learning_directory>
 $ git clone https://github.com/ahill187/DeepJetCore.git
