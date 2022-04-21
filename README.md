@@ -4,7 +4,7 @@ Unfolding the W boson momentum using DNN's and Bayesian unfolding.
 
 ## Getting Started
 
-This project was developed as part of the CERN Summer Student 2018 program.It is recommended that you read through the introductory paper before using the package: <br>
+This project was developed as part of the CERN Summer Student 2018 program. It is recommended that you read through the introductory paper before using the package: <br>
 > https://github.com/ahill187/DeepBayes/blob/optiplex/documentation/unfolding-w-boson(2).pdf
 
 For further information, please contact:
@@ -12,7 +12,7 @@ For further information, please contact:
 > Josh Bendavid Josh.Bendavid@cern.ch <br>
 > Pedro da Silva Pedro.Silva@cern.ch
 
-This project to run in the CMSSW environment at CERN. If you would like to do a local install, please see the file Local_Install.md. 
+This project to run in the CMSSW environment at CERN. If you would like to do a local install, please see the file Local_Install.md.
 
 ### Prerequisites
 
@@ -21,7 +21,7 @@ This project to run in the CMSSW environment at CERN. If you would like to do a 
 To set up the CMSSW environment for the first time:
 
 ```bash
-$ cd 
+$ cd
 $ cmsrel CMSSW_10_2_0_pre5
 $ cd CMSSW_10_2_0_pre5/src
 $ cmsenv
@@ -77,12 +77,12 @@ The DeepBayes model uses W recoil variables to reconstruct the W momentum. To te
 
 ### Running Toy Model
 
-There are two files in the toy_model folder: model.py and model_bins.py. The first uses Gaussian distributions with equal binwidths, while the second uses variant binwidths with equal events (quantiles). 
+There are two files in the toy_model folder: model.py and model_bins.py. The first uses Gaussian distributions with equal binwidths, while the second uses variant binwidths with equal events (quantiles).
 ```bash
 cd <deep_learning_dir>/DeepBayes
 python toy_model/model.py
 ```
-or 
+or
 ```bash
 cd <deep_learning_dir>/DeepBayes
 python toy_model/model_bins.py
@@ -95,14 +95,14 @@ The next prompt will ask if you would like to use the default settings. If you c
 1000 epochs for each Bayesian iteration<br>
 30 iterations of Bayesian unfolding<br>
 
-Depending on the speed of your computer, this should take between 10 - 60 minutes to run. 
+Depending on the speed of your computer, this should take between 10 - 60 minutes to run.
 
 ### Plots
 
 You can view the plots in the plotting directory specified previously. <br>
 
-Combined Plots 
-> These plots show the unfolded training data, unfolded testing data, and the prediction. 
+Combined Plots
+> These plots show the unfolded training data, unfolded testing data, and the prediction.
 
 Training Plots
 > These plots are to verify how well the initial model performed on the training data, and to monitor how the predictions change with the reweighting. They show the smeared training data, the unfolded training data, and the prediction for the training data.
@@ -133,5 +133,3 @@ $ cd <deep_learning_directory>/DeepML
 $ sh <deep_learning_dir>/DeepBayes/runRecoilRegression_AH.sh -r train -m <num> -i <deep_learning_dir>/DeepML/data/recoil_file_list.txt -w <output_directory>
 ```
 This is the same as converting the ROOT trees, except that you need to set "-r train" instead of "-r convert".
-
-
